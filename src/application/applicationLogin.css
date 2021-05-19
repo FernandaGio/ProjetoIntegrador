@@ -1,0 +1,100 @@
+/*arquivo CSS*/
+.root {
+     -fx-background-color: DFE3E9;
+     -fx-image-orientation: url("/Imagens/K3_logo.png");
+     -fx-image-orientation-height: 500;
+     -fx-image-orientation-width: 700;
+}
+
+
+.label {
+	-fx-font-style: normal;
+	-fx-font-weight: normal;
+	-fx-font-size: 22px;
+	/*-fx-line-height: 37px;*/
+    -fx-font-family: Red Rose;
+    -fx-text-fill: #828282;
+}
+
+.label-bright {
+    -fx-font-size: 11pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: white;
+    -fx-opacity: 1;
+}
+
+.label-header {
+    -fx-font-size: 32pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: white;
+    -fx-opacity: 1;
+}
+
+.glyph-icon{
+	-fx-fill: red;
+}
+.table-view {
+    -fx-base: #1d1d1d;
+    -fx-control-inner-background: #1d1d1d;
+    -fx-background-color: #1d1d1d;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+    -fx-padding: 5;
+}
+
+.text-field {
+    -fx-background: rgba(255, 255, 255, 0.35);
+    -fx-background-radius: 30;
+	-fx-border: 1;
+	-fx-border-color: #828282;
+	-fx-box-sizing: border-box;
+	-fx-border-radius: 30px;
+}
+
+.button {
+	-fx-position: absolute;
+	-fx-font-family: Red Rose;
+	-fx-width: 200px;
+	-fx-height: 80px;
+	-fx-left: 645px;
+	-fx-top: 811px;
+	
+	-fx-background: #BCC9D9;
+	-fx-background-radius: 50;
+	-fx-border-radius: 50px;
+}
+
+.button:hover {
+    -fx-background-color: gray;
+}
+
+.button:pressed, .button:default:hover:pressed {
+  -fx-background-color: white;
+  -fx-text-fill: #1d1d1d;
+}
+
+.button:focused {
+    -fx-border-color: white, white;
+    -fx-border-width: 1, 1;
+    -fx-border-style: solid, segments(1, 1);
+    -fx-border-radius: 0, 0;
+    -fx-border-insets: 1 1 1 1, 0;
+}
+
+.button:disabled, .button:default:disabled {
+    -fx-opacity: 0.4;
+    -fx-background-color: #1d1d1d;
+    -fx-text-fill: white;
+}
+
+.button:default {
+    -fx-background-color: -fx-focus-color;
+    -fx-text-fill: #ffffff;
+}
+
+.button:default:hover {
+    -fx-background-color: derive(-fx-focus-color,30%);
+    }
+ 
+ 
+
