@@ -18,7 +18,7 @@ public class MainLogin extends Application {
 			
 			//criando uma cena 
 			Scene telaLoginLayout = new Scene(telaLogin);
-			telaLoginLayout.getStylesheets().add(getClass().getResource("applicationLogin.css").toExternalForm());//Estilização CSS
+			telaLoginLayout.getStylesheets().add(getClass().getResource("/ArquivosCSS/applicationLogin.css").toExternalForm());//Estilização CSS
 			Stage tela = new Stage();
 			//primaryStage.setScene(telaLoginLayout);--abre como primeira tela
 			//tela.setMaximized(true);//abre a tela maximizada

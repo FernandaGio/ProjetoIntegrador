@@ -20,7 +20,7 @@ public class MainCadastroUser extends Application {
 			
 		Scene telaCadastroUserLayout = new Scene(telaCadastroUser);
 			
-		telaCadastroUserLayout.getStylesheets().add(getClass().getResource("applicationCadastroUser.css").toExternalForm());
+		telaCadastroUserLayout.getStylesheets().add(getClass().getResource("/ArquivosCSS/applicationCadastroUser.css").toExternalForm());
 			
 		stage.setScene(telaCadastroUserLayout);
 			

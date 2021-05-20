@@ -20,7 +20,7 @@ public class MainInformacoesItem extends Application {
 			
 		Scene telaInformacoesItemLayout = new Scene(telaInformacoesItem);
 			
-		telaInformacoesItemLayout.getStylesheets().add(getClass().getResource("applicationInformacoesItem.css").toExternalForm());
+		telaInformacoesItemLayout.getStylesheets().add(getClass().getResource("/ArquivosCSS/applicationInformacoesItem.css").toExternalForm());
 			
 		stage.setScene(telaInformacoesItemLayout);
 			
