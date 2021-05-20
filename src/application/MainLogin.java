@@ -27,6 +27,7 @@ public class MainLogin extends Application {
 			//primaryStage.show(); --executa a primeira tela
 			tela.resizableProperty().setValue(Boolean.FALSE);//configuração de redimensão da tela(o usuário não pode alterar)
 			tela.show();
+			System.out.println("Teste com GitHub");
 
 			
 			//carregando o controle da cena(Tela Login)
