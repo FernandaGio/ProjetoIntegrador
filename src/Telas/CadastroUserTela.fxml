@@ -32,10 +32,10 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <TextField fx:id="txtNomeUser" layoutX="127.0" layoutY="170.0" prefHeight="25.0" prefWidth="306.0" />
-      <TextField fx:id="txtCpfUser" layoutX="127.0" layoutY="204.0" prefHeight="25.0" prefWidth="306.0" />
-      <TextField fx:id="txtSenhaUser" layoutX="208.0" layoutY="238.0" prefHeight="25.0" prefWidth="225.0" />
-      <TextField fx:id="txtConfirmeSenhaUser" layoutX="208.0" layoutY="272.0" prefHeight="25.0" prefWidth="225.0" />
+      <TextField fx:id="txtNomeUser" layoutX="127.0" layoutY="170.0" prefHeight="25.0" prefWidth="306.0" promptText="Nome" />
+      <TextField fx:id="txtCpfUser" layoutX="127.0" layoutY="204.0" prefHeight="25.0" prefWidth="306.0" promptText="CPF" />
+      <TextField fx:id="txtSenhaUser" layoutX="208.0" layoutY="238.0" prefHeight="25.0" prefWidth="225.0" promptText="Senha" />
+      <TextField fx:id="txtConfirmeSenhaUser" layoutX="208.0" layoutY="272.0" prefHeight="25.0" prefWidth="225.0" promptText="Confirmação de Senha" />
       <Button fx:id="btnCadastrar" layoutX="182.0" layoutY="329.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="116.0" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-background-color: BCC9D9;" text="Cadastrar" textFill="#e0e0e0">
          <font>
             <Font size="18.0" />
