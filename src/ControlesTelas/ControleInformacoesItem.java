@@ -98,7 +98,7 @@ public class ControleInformacoesItem {
 
     @FXML
     void onClickCadastrarItem(ActionEvent event) {
-
+    	cadastrarItem();
     }
 
     @FXML
@@ -119,6 +119,27 @@ public class ControleInformacoesItem {
 	    	return opcaoEscolhida.get() == btnSim ? true : false;    		
 	    }
 
+	    
+	 private void cadastrarItem() {
+		 /*String descricao = txtDescricao.getText(),
+				classificacao = txtClassificacao.getText(),
+				forncedor = txtFornecedor.getText();
+				//não adicionei marca por conta do checkbox
+		 int quantidadeAtual = Integer.parseInt(txtQuantAtual.getText());
+		 int estMin = Integer.parseInt(txtEstMin.getText());
+		 int estMax = Integer.parseInt(txtEstMin.getText());
+		 int cod = Integer.parseInt(txtCodigo.getText());*/
+		 /*não adicionei estado do item por dúvida em checkbox
+		 não adicionei data de entrada por dúvida de como converter
+		 não adicionei o local
+		 */
+		/* confirmação de cadastro(ainda não está funcionando)
+		Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+		alerta.setHeaderText("Efetuado o cadastro com sucesso.");
+		ButtonType btnOk = ButtonType.OK;
+		alerta.getButtonTypes().setAll(btnOk);*/
+					 
+	 }
 
 	}
 

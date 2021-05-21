@@ -4,6 +4,7 @@ package ControlesTelas;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 public class ControleCadastroUser {
@@ -29,11 +30,11 @@ public class ControleCadastroUser {
 	@FXML
 	private TextField txtCpfUser;
 	
-	@FXML
-	private TextField txtSenhaUser;
-	
-	@FXML
-	private TextField txtConfirmeSenhaUser;
+    @FXML
+    private PasswordField pfSenha;
+
+    @FXML
+    private PasswordField pfConfirmacao;
 	
 	@FXML
 	private Button btnCadastrar;

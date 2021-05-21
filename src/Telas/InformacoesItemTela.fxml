@@ -73,7 +73,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label fx:id="lblCodigo" text="Código:">
+            <Label fx:id="lblCodigo" text=" Código:">
                <font>
                   <Font size="16.0" />
                </font>
@@ -152,12 +152,12 @@
          </children>
       </GridPane>
       <Circle fill="#bcc9d9" layoutX="260.0" layoutY="52.0" radius="34.0" stroke="BLACK" strokeType="INSIDE" />
-      <Button fx:id="btCadastrar" layoutX="145.0" layoutY="413.0" mnemonicParsing="false" onAction="#onClickCadastrarItem" prefHeight="37.0" prefWidth="91.0" style="-fx-background-radius: 30; -fx-background-color: BCC9D9;" text="Cadastrar">
+      <Button fx:id="btCadastrar" layoutX="145.0" layoutY="404.0" mnemonicParsing="false" onAction="#onClickCadastrarItem" prefHeight="37.0" prefWidth="91.0" style="-fx-background-radius: 30; -fx-background-color: BCC9D9;" text="Cadastrar">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="btSalvar" layoutX="260.0" layoutY="413.0" mnemonicParsing="false" onAction="#onClickSalvar" prefHeight="37.0" prefWidth="124.0" style="-fx-background-radius: 30; -fx-background-color: BCC9D9;" text="Salvar Alteração">
+      <Button fx:id="btSalvar" layoutX="260.0" layoutY="404.0" mnemonicParsing="false" onAction="#onClickSalvar" prefHeight="37.0" prefWidth="124.0" style="-fx-background-radius: 30; -fx-background-color: BCC9D9;" text="Salvar Alteração">
          <font>
             <Font size="14.0" />
          </font>

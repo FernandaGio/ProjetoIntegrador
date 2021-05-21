@@ -94,7 +94,14 @@
 
 .button:default:hover {
     -fx-background-color: derive(-fx-focus-color,30%);
-    }
- 
+ }
+    
+ .passwordfield{
+ 	-fx-background: rgba(255, 255, 255, 0.35);
+    -fx-background-radius: 30;
+	-fx-border: 1;
+	-fx-border-color: #828282;
+	-fx-border-radius: 30px;
+ }
  
 

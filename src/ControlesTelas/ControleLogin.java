@@ -15,6 +15,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -25,20 +26,18 @@ public class ControleLogin implements Initializable{
 
 	    @FXML private Label lblSenha;
 	    @FXML private Label lblLogin;
-	    @FXML private TextField txtSenha;
+	    @FXML private PasswordField pfSenha;
 	    @FXML private TextField txtLogin;
 	    @FXML private Button btnEntrar;
 	    @FXML private Button btnCadastroUser;
-
+	    
 	    @FXML
 	    void onClickCadastroUser(ActionEvent event) {
-
 	    }
-
 	    @FXML
 	    void onClickEntrar(ActionEvent event) {
-
 	    }
+	   
 	    
 	    public boolean onCloseQuery() {
 	    	Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
