@@ -6,7 +6,6 @@
      -fx-image-orientation-width: 700;
 }
 
-
 .label {
 	-fx-font-style: normal;
 	-fx-font-weight: normal;
@@ -49,19 +48,6 @@
 	-fx-border-color: #828282;
 	-fx-box-sizing: border-box;
 	-fx-border-radius: 30px;
-}
-
-.button {
-	-fx-position: absolute;
-	-fx-font-family: Red Rose;
-	-fx-width: 200px;
-	-fx-height: 80px;
-	-fx-left: 645px;
-	-fx-top: 811px;
-	
-	-fx-background: #BCC9D9;
-	-fx-background-radius: 50;
-	-fx-border-radius: 50px;
 }
 
     
