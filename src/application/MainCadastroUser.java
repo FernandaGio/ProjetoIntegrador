@@ -16,16 +16,12 @@ public class MainCadastroUser extends Application {
 		
 		FXMLLoader root = new FXMLLoader (getClass().getResource("/Telas/CadastroUserTela.fxml"));
 		Parent telaCadastroUser = root.load();
-		
 			
-		Scene telaCadastroUserLayout = new Scene(telaCadastroUser);
-			
-		telaCadastroUserLayout.getStylesheets().add(getClass().getResource("/ArquivosCSS/applicationCadastroUser.css").toExternalForm());
-			
-		stage.setScene(telaCadastroUserLayout);
-			
-		stage.show();
-			
+		Scene telaCadastroUserLayout = new Scene(telaCadastroUser);	
+		telaCadastroUserLayout.getStylesheets().add(getClass().getResource("/ArquivosCSS/applicationCadastroUser.css").toExternalForm());	
+		stage.setScene(telaCadastroUserLayout);	
+		stage.setTitle("Cadastro de Usuários");
+		stage.show();	
 		setStage(stage);
 			 
 	}

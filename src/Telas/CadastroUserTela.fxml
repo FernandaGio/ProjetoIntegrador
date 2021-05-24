@@ -13,9 +13,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ControlesTelas.ControleCadastroUser">
    <children>
-      <Text fill="#e0e0e0" layoutX="100.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Red Rose; -fx-font-weight: 900;" text="Cadastro de Usuário" textAlignment="CENTER">
+      <Text fill="#e0e0e0" layoutX="104.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Red Rose; -fx-font-weight: 900;" text="Cadastro de Usuário" textAlignment="CENTER">
          <font>
-            <Font size="28.0" />
+            <Font name="System Bold" size="28.0" />
          </font>
       </Text>
       <Label fx:id="lblNomeUser" layoutX="66.0" layoutY="169.0" text="Nome:" textFill="#e0e0e0">
@@ -40,18 +40,18 @@
       </Label>
       <TextField fx:id="txtNomeUser" layoutX="127.0" layoutY="170.0" prefHeight="25.0" prefWidth="306.0" promptText="Nome" />
       <TextField fx:id="txtCpfUser" layoutX="127.0" layoutY="204.0" prefHeight="25.0" prefWidth="306.0" promptText="CPF" />
-      <Circle fill="WHITE" layoutX="232.0" layoutY="52.0" opacity="0.76" radius="34.0" smooth="false" stroke="WHITE" />
-      <ImageView fitHeight="47.0" fitWidth="47.0" layoutX="209.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+      <PasswordField fx:id="pfSenha" layoutX="209.0" layoutY="237.0" prefHeight="25.0" prefWidth="225.0" promptText="Senha" style="-fx-background-radius: 30; -fx-border-radius: 30;" />
+      <PasswordField fx:id="pfConfirmacao" layoutX="209.0" layoutY="271.0" prefHeight="25.0" prefWidth="225.0" promptText="Confirmação" style="-fx-background-radius: 30; -fx-border-radius: 30;" />
+      <Button fx:id="btnCadastrar" layoutX="182.0" layoutY="329.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-background-color: BCC9D9;" text="Cadastrar" textFill="#e0e0e0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Circle fill="#bcc9d9" layoutX="241.0" layoutY="61.0" radius="31.0" stroke="BLACK" strokeType="INSIDE" />
+      <ImageView fitHeight="44.0" fitWidth="47.0" layoutX="217.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Imagens/AddUser.png" />
          </image>
       </ImageView>
-      <PasswordField fx:id="pfSenha" layoutX="209.0" layoutY="237.0" prefHeight="25.0" prefWidth="225.0" promptText="Senha" style="-fx-background-radius: 30; -fx-border-radius: 30;" />
-      <PasswordField fx:id="pfConfirmacao" layoutX="209.0" layoutY="271.0" prefHeight="25.0" prefWidth="225.0" promptText="Confirmação" style="-fx-background-radius: 30; -fx-border-radius: 30;" />
-      <Button fx:id="btnCadastrar" layoutX="182.0" layoutY="329.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="116.0" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-background-color: BCC9D9;" text="Cadastrar" textFill="#e0e0e0">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Button>
    </children>
 </AnchorPane>

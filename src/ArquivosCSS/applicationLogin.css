@@ -17,7 +17,7 @@
 }
 
 .label-bright {
-    -fx-font-size: 11pt;
+    -fx-font-size: 32pt;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: white;
     -fx-opacity: 1;
@@ -64,37 +64,6 @@
 	-fx-border-radius: 50px;
 }
 
-.button:hover {
-    -fx-background-color: gray;
-}
-
-.button:pressed, .button:default:hover:pressed {
-  -fx-background-color: white;
-  -fx-text-fill: #1d1d1d;
-}
-
-.button:focused {
-    -fx-border-color: white, white;
-    -fx-border-width: 1, 1;
-    -fx-border-style: solid, segments(1, 1);
-    -fx-border-radius: 0, 0;
-    -fx-border-insets: 1 1 1 1, 0;
-}
-
-.button:disabled, .button:default:disabled {
-    -fx-opacity: 0.4;
-    -fx-background-color: #1d1d1d;
-    -fx-text-fill: white;
-}
-
-.button:default {
-    -fx-background-color: -fx-focus-color;
-    -fx-text-fill: #ffffff;
-}
-
-.button:default:hover {
-    -fx-background-color: derive(-fx-focus-color,30%);
- }
     
  .passwordfield{
  	-fx-background: rgba(255, 255, 255, 0.35);

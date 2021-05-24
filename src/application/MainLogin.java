@@ -19,20 +19,20 @@ public class MainLogin extends Application {
 			//criando uma cena 
 			Scene telaLoginLayout = new Scene(telaLogin);
 			telaLoginLayout.getStylesheets().add(getClass().getResource("/ArquivosCSS/applicationLogin.css").toExternalForm());//Estilização CSS
-			Stage tela = new Stage();
+			Stage stage = new Stage();
 			//primaryStage.setScene(telaLoginLayout);--abre como primeira tela
 			//tela.setMaximized(true);//abre a tela maximizada
-			tela.setScene(telaLoginLayout);
-			tela.setTitle("Sistema de Estoque - K3");
+			stage.setScene(telaLoginLayout);
+			stage.setTitle("Sistema de Estoque - K3");
 			//primaryStage.show(); --executa a primeira tela
-			tela.resizableProperty().setValue(Boolean.FALSE);//configuração de redimensão da tela(o usuário não pode alterar)
-			tela.show();
+			stage.resizableProperty().setValue(Boolean.FALSE);//configuração de redimensão da tela(o usuário não pode alterar)
+			stage.show();
 
 			
 			//carregando o controle da cena(Tela Login)
 			 ControleLogin controlelogin = root.getController();
 			 
-			 tela.setOnCloseRequest(e->{
+			 stage.setOnCloseRequest(e->{
 				 if (controlelogin.onCloseQuery()) {
 					 System.exit(0);
 				 }else {

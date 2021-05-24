@@ -56,14 +56,24 @@ public class ControleLogin implements Initializable{
 			
 			btnEntrar.setOnMouseClicked(MouseEvent -> {
 				//teste de tela de informações item
-				MainInformacoesItem m= new MainInformacoesItem();
-				fecha();
-				try {
-					m.start(new Stage());
-				}catch (Exception e1) {
-					e1.printStackTrace();
-				}
-			});
+
+				if(txtLogin.getText().equals("root") && pfSenha.getText().equals("1234")){
+					MainInformacoesItem m= new MainInformacoesItem();
+					fecha();
+					try {
+						m.start(new Stage());
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}	
+	
+			} else {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Erro");
+				alert.setHeaderText("Login Inválido");
+				alert.setContentText("Login ou senha incorretos");
+				alert.show();
+			}
+		});
 				/*PessoaDao dao = new PessoaDao();
 				'List<Pessoa> pessoas = dao.getList();
 				

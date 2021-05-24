@@ -16,16 +16,12 @@ public class MainInformacoesItem extends Application {
 		
 		FXMLLoader root = new FXMLLoader (getClass().getResource("/Telas/InformacoesItemTela.fxml"));
 		Parent telaInformacoesItem = root.load();
-		
 			
-		Scene telaInformacoesItemLayout = new Scene(telaInformacoesItem);
-			
-		telaInformacoesItemLayout.getStylesheets().add(getClass().getResource("/ArquivosCSS/applicationInformacoesItem.css").toExternalForm());
-			
-		stage.setScene(telaInformacoesItemLayout);
-			
+		Scene telaInformacoesItemLayout = new Scene(telaInformacoesItem);	
+		telaInformacoesItemLayout.getStylesheets().add(getClass().getResource("/ArquivosCSS/applicationInformacoesItem.css").toExternalForm());	
+		stage.setScene(telaInformacoesItemLayout);	
+		stage.setTitle("Informações do Item");
 		stage.show();
-			
 		setStage(stage);
 			 
 	}
