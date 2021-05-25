@@ -15,83 +15,74 @@ import javafx.scene.control.TextField;
 
 public class ControleInformacoesItem {
 
-	 @FXML
-	    private Label lblDescricao;
+	@FXML
+    private Label lblDescricao;
 
-	    @FXML
-	    private TextField txtDescricao;
+    @FXML
+    private TextField txtDescricao;
 
-	    @FXML
-	    private Label lblFornecedor;
+    @FXML
+    private Label lblFornecedor;
 
-	    @FXML
-	    private TextField txtFornecedor;
+    @FXML
+    private TextField txtFornecedor;
 
-	    @FXML
-	    private ComboBox<?> cbFornecedor;
+    @FXML
+    private Label lblMarca;
 
-	    @FXML
-	    private Label lblMarca;
+    @FXML
+    private Label lblQuantAtual;
 
-	    @FXML
-	    private ComboBox<?> cbMarca;
+    @FXML
+    private TextField txtQuantAtual;
 
-	    @FXML
-	    private Label lblQuantAtual;
+    @FXML
+    private Label lblEstMin;
 
-	    @FXML
-	    private TextField txtQuantAtual;
+    @FXML
+    private TextField txtEstMin;
 
-	    @FXML
-	    private Label lblEstMin;
+    @FXML
+    private TextField txtQuantAtual1;
 
-	    @FXML
-	    private TextField txtEstMin;
+    @FXML
+    private Label lblCod;
 
-	    @FXML
-	    private Label lblCod;
+    @FXML
+    private TextField txtCod;
 
-	    @FXML
-	    private TextField txtCod;
+    @FXML
+    private Label lblLocal;
 
-	    @FXML
-	    private Label lblLocal;
+    @FXML
+    private TextField txtLocal;
 
-	    @FXML
-	    private TextField txtLocal;
+    @FXML
+    private Label lblEstMax;
 
-	    @FXML
-	    private Label lblEstMax;
+    @FXML
+    private TextField txtEstMax;
 
-	    @FXML
-	    private TextField txtEstMax;
+    @FXML
+    private Label lblReferencia;
 
-	    @FXML
-	    private Label lblReferencia;
+    @FXML
+    private TextField txtReferencia;
 
-	    @FXML
-	    private TextField txtReferencia;
+    @FXML
+    private DatePicker dpDataEntrada;
 
-	    @FXML
-	    private DatePicker dpDataEntrada;
+    @FXML
+    private Label lblDataEntrada;
 
-	    @FXML
-	    private Label lblDataEntrada;
+    @FXML
+    private Label lblEstadoItem;
 
-	    @FXML
-	    private CheckBox checkbInativo;
+    @FXML
+    private Label lblFoto;
 
-	    @FXML
-	    private CheckBox checkbAtivo;
-
-	    @FXML
-	    private Label lblEstadoItem;
-
-	    @FXML
-	    private Label lblFoto;
-
-	    @FXML
-	    private ComboBox<?> cbFoto;
+    @FXML
+    private ComboBox<?> cbFoto;
 
     @FXML
     void onClickCadastrarItem(ActionEvent event) {
