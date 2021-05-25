@@ -86,11 +86,15 @@ public class ControleInformacoesItem {
     @FXML
     private ComboBox<?> cbFoto;
 
+    @FXML
+    private RadioButton rbInativo;
+    
+    @FXML
+    private ToggleGroup estado;   
 
     @FXML
-    private ToggleGroup estado;
-
-       
+    private RadioButton rbAtivo;
+    
     @FXML
     void onClickCadastrarItem(ActionEvent event) {
     	cadastrarItem();
