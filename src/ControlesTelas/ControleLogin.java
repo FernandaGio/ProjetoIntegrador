@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import application.MainLogin;
 import application.MainCadastroUser;
+import application.MainEstoque;
 import application.MainInformacoesItem;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -58,7 +59,7 @@ public class ControleLogin implements Initializable{
 				//teste de tela de informações item
 
 				if(txtLogin.getText().equals("root") && pfSenha.getText().equals("1234")){
-					MainInformacoesItem m= new MainInformacoesItem();
+					MainEstoque m= new MainEstoque();
 					fecha();
 					try {
 						m.start(new Stage());
