@@ -11,7 +11,9 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 
 public class ControleInformacoesItem {
 
@@ -84,6 +86,15 @@ public class ControleInformacoesItem {
     @FXML
     private ComboBox<?> cbFoto;
 
+    @FXML
+    private RadioButton rbInativo;
+
+    @FXML
+    private ToggleGroup estado;
+
+    @FXML
+    private RadioButton rbAtivo;
+    
     @FXML
     void onClickCadastrarItem(ActionEvent event) {
     	cadastrarItem();

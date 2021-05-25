@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -152,12 +153,15 @@
             <ComboBox fx:id="cbFoto" prefHeight="25.0" prefWidth="40.0" style="-fx-background-radius: 30;" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
             <Group GridPane.columnIndex="1">
                <children>
-                  <RadioButton mnemonicParsing="false" text="Inativo" textFill="#e0e0e0">
+                  <RadioButton fx:id="rbInativo" mnemonicParsing="false" text="Inativo" textFill="#e0e0e0">
                      <font>
                         <Font size="16.0" />
                      </font>
+                     <toggleGroup>
+                        <ToggleGroup fx:id="estado" />
+                     </toggleGroup>
                   </RadioButton>
-                  <RadioButton layoutX="106.0" mnemonicParsing="false" text="Ativo  " textFill="#e0e0e0">
+                  <RadioButton fx:id="rbAtivo" layoutX="106.0" mnemonicParsing="true" text="Ativo  " textFill="#e0e0e0" toggleGroup="$estado">
                      <font>
                         <Font size="16.0" />
                      </font>
