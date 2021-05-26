@@ -150,7 +150,7 @@
                </font>
             </Label>
             <ComboBox fx:id="cbFoto" prefHeight="25.0" prefWidth="40.0" style="-fx-background-radius: 30;" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
-            <RadioButton fx:id="rbInativo" contentDisplay="CENTER" mnemonicParsing="false" text="Inativo" textFill="#e0e0e0" GridPane.columnIndex="1">
+            <RadioButton fx:id="rbInativo" contentDisplay="CENTER" mnemonicParsing="true" selected="true" text="Inativo" textFill="#e0e0e0" GridPane.columnIndex="1">
                <font>
                   <Font size="16.0" />
                </font>
@@ -158,13 +158,10 @@
                   <ToggleGroup fx:id="estado" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="rbAtivo" mnemonicParsing="true" text="Ativo  " textFill="#e0e0e0" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+            <RadioButton fx:id="rbAtivo" mnemonicParsing="false" text="Ativo  " textFill="#e0e0e0" toggleGroup="$estado" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
                <font>
                   <Font size="16.0" />
                </font>
-               <toggleGroup>
-                  <ToggleGroup fx:id="estado" />
-               </toggleGroup>
             </RadioButton>
          </children>
       </GridPane>
