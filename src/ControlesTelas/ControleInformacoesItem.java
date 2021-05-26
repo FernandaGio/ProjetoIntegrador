@@ -1,124 +1,135 @@
 package ControlesTelas;
 
+import java.io.File;
+import java.net.URL;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Stage;
 
-public class ControleInformacoesItem {
+public class ControleInformacoesItem implements Initializable{
 
-	@FXML
-    private Label lblDescricao;
+	 	@FXML
+	    private Label lblDescricao;
 
-    @FXML
-    private TextField txtDescricao;
+	    @FXML
+	    private TextField txtDescricao;
 
-    @FXML
-    private Label lblFornecedor;
+	    @FXML
+	    private Label lblFornecedor;
 
-    @FXML
-    private TextField txtFornecedor;
+	    @FXML
+	    private TextField txtFornecedor;
 
-    @FXML
-    private Label lblMarca;
+	    @FXML
+	    private Label lblMarca;
 
-    @FXML
-    private Label lblQuantAtual;
+	    @FXML
+	    private Label lblQuantAtual;
 
-    @FXML
-    private TextField txtQuantAtual;
+	    @FXML
+	    private TextField txtQuantAtual;
 
-    @FXML
-    private Label lblEstMin;
+	    @FXML
+	    private Label lblEstMin;
 
-    @FXML
-    private TextField txtEstMin;
+	    @FXML
+	    private TextField txtEstMin;
 
-    @FXML
-    private TextField txtQuantAtual1;
+	    @FXML
+	    private TextField txtMarca;
 
-    @FXML
-    private Label lblCod;
+	    @FXML
+	    private Label lblCod;
 
-    @FXML
-    private TextField txtCod;
+	    @FXML
+	    private TextField txtCod;
 
-    @FXML
-    private Label lblLocal;
+	    @FXML
+	    private Label lblLocal;
 
-    @FXML
-    private TextField txtLocal;
+	    @FXML
+	    private TextField txtLocal;
 
-    @FXML
-    private Label lblEstMax;
+	    @FXML
+	    private Label lblEstMax;
 
-    @FXML
-    private TextField txtEstMax;
+	    @FXML
+	    private TextField txtEstMax;
 
-    @FXML
-    private Label lblReferencia;
+	    @FXML
+	    private Label lblReferencia;
 
-    @FXML
-    private TextField txtReferencia;
+	    @FXML
+	    private TextField txtReferencia;
 
-    @FXML
-    private DatePicker dpDataEntrada;
+	    @FXML
+	    private DatePicker dpDataEntrada;
 
-    @FXML
-    private Label lblDataEntrada;
+	    @FXML
+	    private Label lblDataEntrada;
 
-    @FXML
-    private Label lblEstadoItem;
+	    @FXML
+	    private Label lblEstadoItem;
 
-    @FXML
-    private Label lblFoto;
+	    @FXML
+	    private Label lblFoto;
 
-    @FXML
-    private ComboBox<?> cbFoto;
+	    @FXML
+	    private ComboBox<?> cbFoto;
 
-    @FXML
-    private RadioButton rbInativo;
-    
-    @FXML
-    private ToggleGroup estado;   
+	    @FXML
+	    private RadioButton rbInativo;
 
-    @FXML
-    private RadioButton rbAtivo;
+	    @FXML
+	    private ToggleGroup estado;
+
+	    @FXML
+	    private RadioButton rbAtivo;
+	    
+	    @FXML
+	    private ImageView imgFotoItem;
+	    
+	    @FXML
+	    private Button btCadastrar;
+
+	    @FXML
+	    private Button btSalvar;
+
     
     @FXML
     void onClickCadastrarItem(ActionEvent event) {
-    	cadastrarItem();
     }
 
     @FXML
     void onClickSalvar(ActionEvent event) {
 
     }
-   
-	    public boolean onCloseQuery() {
-	    	Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-	    	alerta.setTitle("Atenção");
-	    	alerta.setHeaderText("Deseja sair do sistema?");
-	    	ButtonType btnNao = ButtonType.NO;
-	    	ButtonType btnSim = ButtonType.YES;
-	    	//lista de botões
-	    	alerta.getButtonTypes().setAll(btnNao, btnSim);
-	    	Optional<ButtonType> opcaoEscolhida = alerta.showAndWait();
-	    	
-	    	return opcaoEscolhida.get() == btnSim ? true : false;    		
-	    }
-
-	    
+    
+    @Override
+	public void initialize(URL url, ResourceBundle rb) {	
+    	
+    	imgFotoItem.setOnMouseClicked(MouseEvent ->{
+    		selecionaFoto();
+    	});
+    }
+    
 	 private void cadastrarItem() {
 		 /*String descricao = txtDescricao.getText(),
 				classificacao = txtClassificacao.getText(),
@@ -139,7 +150,17 @@ public class ControleInformacoesItem {
 		alerta.getButtonTypes().setAll(btnOk);*/
 					 
 	 }
+	 
+	 public void selecionaFoto() {
+		 //abre aba para selecionar foto
+		 FileChooser f = new FileChooser();//método do javafx
+		 f.getExtensionFilters().add(new ExtensionFilter("Imagens", "*.jpg", "*.jpeg", "*.png"));//filtro para apenas escolher imagens
+		 File file = f.showOpenDialog(new Stage());//método para escolher um arquivo
+		 if(file!=null) {
+		 	imgFotoItem.setImage(new Image("file:///" + file.getAbsolutePath()));
+		 }
 
-	}
+	 }
+}
 
 

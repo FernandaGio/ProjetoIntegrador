@@ -4,10 +4,8 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import application.MainLogin;
 import application.MainCadastroUser;
 import application.MainEstoque;
-import application.MainInformacoesItem;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,12 +23,23 @@ public class ControleLogin implements Initializable{
 	
 
 
-	    @FXML private Label lblSenha;
-	    @FXML private Label lblLogin;
-	    @FXML private PasswordField pfSenha;
-	    @FXML private TextField txtLogin;
-	    @FXML private Button btnEntrar;
-	    @FXML private Button btnCadastroUser;
+	    @FXML 
+	    private Label lblSenha;
+	    
+	    @FXML 
+	    private Label lblLogin;
+	    
+	    @FXML 
+	    private PasswordField pfSenha;
+	    
+	    @FXML 
+	    private TextField txtLogin;
+	    
+	    @FXML 
+	    private Button btnEntrar;
+	    
+	    @FXML 
+	    private Button btnCadastroUser;
 	    
 	    @FXML
 	    void onClickCadastroUser(ActionEvent event) {
@@ -56,7 +65,6 @@ public class ControleLogin implements Initializable{
 		public void initialize(URL url, ResourceBundle rb) {
 			
 			btnEntrar.setOnMouseClicked(MouseEvent -> {
-				//teste de tela de informações item
 
 				if(txtLogin.getText().equals("root") && pfSenha.getText().equals("1234")){
 					MainEstoque m= new MainEstoque();
