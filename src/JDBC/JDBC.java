@@ -6,7 +6,7 @@ public class JDBC {
 	
 	public static void main(String[] args) {
 		
-		//Item item = new Item("Plug3P+32A Verde", "9881 Steck Indústria Elétrica  LTDA", "Steck", "101", 55, "AB", 8, 60, 
+		//Item item = new Item("Plug3P+32A", "9881 Steck Indústria Elétrica  LTDA", "Steck", "101", 55, "AB", 8, 60, 
 		//		"4273", "00/00/00", "Ativo", "exemplo");
 		
 		//ItemDAO dao = new ItemDAOJDBC();
