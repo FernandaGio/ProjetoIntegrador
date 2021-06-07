@@ -5,7 +5,7 @@ public class Item {
 	private String descricao_item;
 	private String fornecedor_item;
 	private String marca_item;
-	private String codigo_item;
+	private int codigo_item;
 	private int quant_atual_item;
 	private String local_item;
 	private int estoque_min_item;
@@ -18,7 +18,7 @@ public class Item {
 	public Item() {
 	}
 	
-	public Item(String descricao_item, String fornecedor_item, String marca_item, String codigo_item,
+	public Item(String descricao_item, String fornecedor_item, String marca_item, int codigo_item,
 			int quant_atual_item, String local_item, int estoque_min_item, int estoque_max_item,
 			String referencia_marca_item, String data_entrada_item, String estado_item, String foto_item) {
 		this.descricao_item = descricao_item;
@@ -53,10 +53,10 @@ public class Item {
 	public void setMarca_item(String marca_item) {
 		this.marca_item = marca_item;
 	}
-	public String getCodigo_item() {
+	public int getCodigo_item() {
 		return codigo_item;
 	}
-	public void setCodigo_item(String codigo_item) {
+	public void setCodigo_item(int codigo_item) {
 		this.codigo_item = codigo_item;
 	}
 	public int getQuant_atual_item() {
