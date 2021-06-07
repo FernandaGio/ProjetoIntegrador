@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -111,6 +112,8 @@ public class ControleInformacoesItem implements Initializable{
 
 	    @FXML
 	    private Button btSalvar;
+	    
+	    private String caminhoFoto;
 
     
     @FXML
@@ -148,7 +151,7 @@ public class ControleInformacoesItem implements Initializable{
 		alerta.setHeaderText("Efetuado o cadastro com sucesso.");
 		ButtonType btnOk = ButtonType.OK;
 		alerta.getButtonTypes().setAll(btnOk);*/
-					 
+		
 	 }
 	 
 	 public void selecionaFoto() {
@@ -158,6 +161,7 @@ public class ControleInformacoesItem implements Initializable{
 		 File file = f.showOpenDialog(new Stage());//método para escolher um arquivo
 		 if(file!=null) {
 		 	imgFotoItem.setImage(new Image("file:///" + file.getAbsolutePath()));
+		 	caminhoFoto = file.getAbsolutePath();
 		 }
 
 	 }

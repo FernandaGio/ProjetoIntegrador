@@ -19,7 +19,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="525.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ControlesTelas.ControleInformacoesItem">
    <children>
-      <GridPane layoutX="52.0" layoutY="141.0" prefHeight="60.0" prefWidth="415.0">
+      <GridPane layoutX="54.0" layoutY="146.0" prefHeight="60.0" prefWidth="415.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="202.0" minWidth="10.0" prefWidth="106.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="313.0" minWidth="10.0" prefWidth="309.0" />
@@ -43,7 +43,7 @@
             <TextField fx:id="txtFornecedor" prefHeight="13.0" prefWidth="309.0" style="-fx-background-radius: 30;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <GridPane layoutX="53.0" layoutY="198.0">
+      <GridPane layoutX="55.0" layoutY="203.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="108.0" minWidth="10.0" prefWidth="105.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="95.0" />
@@ -66,7 +66,7 @@
                </font>
             </Label>
             <TextField fx:id="txtQuantAtual" prefHeight="25.0" prefWidth="85.0" promptText="0" style="-fx-background-radius: 30;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label fx:id="lblEstMin" text="Estoque Mín.:" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+            <Label fx:id="lblEstMin" prefHeight="25.0" prefWidth="105.0" text=" Estoque Mín.:" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                <font>
                   <Font size="16.0" />
                </font>
@@ -74,7 +74,7 @@
             <TextField fx:id="txtEstMin" prefHeight="25.0" prefWidth="85.0" promptText="0" style="-fx-background-radius: 30;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
-      <GridPane layoutX="260.0" layoutY="198.0" prefHeight="90.0" prefWidth="209.0">
+      <GridPane layoutX="262.0" layoutY="203.0" prefHeight="90.0" prefWidth="209.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -85,12 +85,6 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="lblCod" text=" Código:">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <TextField fx:id="txtCod" prefHeight="25.0" prefWidth="111.0" promptText="0001" style="-fx-background-radius: 30;" GridPane.columnIndex="1" />
             <Label fx:id="lblLocal" text="*Local:" GridPane.rowIndex="1">
                <font>
                   <Font size="16.0" />
@@ -103,33 +97,32 @@
                </font>
             </Label>
             <TextField fx:id="txtEstMax" prefHeight="25.0" prefWidth="85.0" promptText="0" style="-fx-background-radius: 30;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="lblReferencia" text=" Referência:">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtReferencia" prefHeight="25.0" prefWidth="205.0" promptText="1SAM201906R1" style="-fx-background-radius: 30;" GridPane.columnIndex="1" />
          </children>
       </GridPane>
-      <GridPane layoutX="54.0" layoutY="286.0" prefHeight="60.0" prefWidth="415.0">
+      <GridPane layoutX="56.0" layoutY="291.0" prefHeight="30.0" prefWidth="415.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="lblReferencia" text=" Referência(Marca):">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <TextField fx:id="txtReferencia" prefHeight="25.0" prefWidth="205.0" promptText="1SAM201906R1" style="-fx-background-radius: 30;" GridPane.columnIndex="1" />
-            <DatePicker fx:id="dpDataEntrada" prefHeight="25.0" prefWidth="206.0" style="-fx-background-color: rgba(255, 255, 255, 0.35); -fx-background-radius: 30; -fx-border-radius: 30;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label fx:id="lblDataEntrada" text="*Data de Entrada:" GridPane.rowIndex="1">
+            <DatePicker fx:id="dpDataEntrada" prefHeight="25.0" prefWidth="206.0" style="-fx-background-color: rgba(255, 255, 255, 0.35); -fx-background-radius: 30; -fx-border-radius: 30;" GridPane.columnIndex="1" />
+            <Label fx:id="lblDataEntrada" text="*Data de Entrada:">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
          </children>
       </GridPane>
-      <GridPane layoutX="53.0" layoutY="330.0" prefHeight="60.0" prefWidth="415.0">
+      <GridPane layoutX="55.0" layoutY="324.0" prefHeight="30.0" prefWidth="415.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="131.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="287.0" minWidth="10.0" prefWidth="178.0" />
@@ -173,12 +166,12 @@
          </children>
       </GridPane>
       <Circle fill="#bcc9d9" layoutX="260.0" layoutY="47.0" radius="34.0" stroke="BLACK" strokeType="INSIDE" />
-      <Button fx:id="btCadastrar" layoutX="158.0" layoutY="402.0" mnemonicParsing="false" onAction="#onClickCadastrarItem" prefHeight="26.0" prefWidth="79.0" style="-fx-background-radius: 30; -fx-background-color: BCC9D9;" text="Cadastrar">
+      <Button fx:id="btCadastrar" layoutX="158.0" layoutY="395.0" mnemonicParsing="false" onAction="#onClickCadastrarItem" prefHeight="26.0" prefWidth="79.0" style="-fx-background-radius: 30; -fx-background-color: BCC9D9;" text="Cadastrar">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="btSalvar" layoutX="260.0" layoutY="402.0" mnemonicParsing="false" onAction="#onClickSalvar" prefHeight="30.0" prefWidth="119.0" style="-fx-background-radius: 30; -fx-background-color: BCC9D9;" text="Salvar Alteração">
+      <Button fx:id="btSalvar" layoutX="260.0" layoutY="395.0" mnemonicParsing="false" onAction="#onClickSalvar" prefHeight="30.0" prefWidth="119.0" style="-fx-background-radius: 30; -fx-background-color: BCC9D9;" text="Salvar Alteração">
          <font>
             <Font size="14.0" />
          </font>
@@ -188,7 +181,7 @@
             <Image url="@../Imagens/Itens.png" />
          </image>
       </ImageView>
-      <Text fill="#e0e0e0" layoutX="123.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Informações do Item">
+      <Text fill="#e0e0e0" layoutX="123.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Informações do Item">
          <font>
             <Font name="System Bold" size="28.0" />
          </font>
