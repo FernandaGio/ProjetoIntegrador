@@ -8,8 +8,8 @@ public class JDBC {
 		
 
 		// TESTANDO MÉTODO DE INSERIR
-		Item item = new Item("Plug3P+32A Vermelho", "9881 Steck Indústria Elétrica  LTDA", "Steck", 10, 56, "AB", 8, 60, 
-				"4274", "2002-02-20", "Ativo", "exemplo");
+		Item item = new Item("Tomada Simples", "9881 Steck Indústria Elétrica  LTDA", "Steck", 56, "AB", 8, 60, 
+				"4274", "2020-02-20", "Ativo", "exemplo");
 		
 		ItemDAO dao = new ItemDAOJDBC();
 		

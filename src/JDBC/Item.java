@@ -1,5 +1,6 @@
 package JDBC;
 
+import java.util.Date;
 
 public class Item {
 	
@@ -12,20 +13,20 @@ public class Item {
 	private int estoque_min_item;
 	private int estoque_max_item;
 	private String referencia_marca_item;
-	private String data_entrada_item;
+	private String data_entrada_item; //trocar pra date
 	private String estado_item;
 	private String foto_item;
 	
 	public Item() {
 	}
 	
-	public Item(String descricao_item, String fornecedor_item, String marca_item, int codigo_item,
-			int quant_atual_item, String local_item, int estoque_min_item, int estoque_max_item,
-			String referencia_marca_item, String data_entrada_item, String estado_item, String foto_item) {
+	public Item(String descricao_item, String fornecedor_item, String marca_item, int quant_atual_item,
+			String local_item, int estoque_min_item, int estoque_max_item, String referencia_marca_item,
+			String data_entrada_item, String estado_item, String foto_item) {
+		super();
 		this.descricao_item = descricao_item;
 		this.fornecedor_item = fornecedor_item;
 		this.marca_item = marca_item;
-		this.codigo_item = codigo_item;
 		this.quant_atual_item = quant_atual_item;
 		this.local_item = local_item;
 		this.estoque_min_item = estoque_min_item;

@@ -1,10 +1,13 @@
 package JDBC;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
+import Enum.ColunaBanco;
 
 public class ItemDAOJDBC implements ItemDAO {
 	
@@ -135,16 +138,25 @@ public class ItemDAOJDBC implements ItemDAO {
 		return itens;
 	}
 	
-	public ArrayList<Item> buscar() {
+	public ArrayList<Item> buscar(String coluna, String buscar) {
 		
 		ArrayList<Item> itens = new ArrayList<Item>();
 		
-		String sql = "select * from item;";
+		String sql = "select * from item where ? = ?;";//combobox + "=" + textfield;
 		
+		PreparedStatement preparedStatement;
 		try {
-			Statement statement = banco.getConnection().createStatement();
+			preparedStatement = banco.getConnection().prepareStatement(sql);
 			
-			ResultSet resultSet = statement.executeQuery(sql);
+			 for(ColunaBanco colunaSelecionada: ColunaBanco.values()) {
+				 System.out.println(colunaSelecionada.getColunasBanco());
+			 }
+			preparedStatement.setString(1, coluna);
+			preparedStatement.setString(2, buscar);
+			
+			//Statement statement = banco.getConnection().createStatement();
+			
+			ResultSet resultSet = preparedStatement.executeQuery();
 			
 			while(resultSet.next()) {
 				
