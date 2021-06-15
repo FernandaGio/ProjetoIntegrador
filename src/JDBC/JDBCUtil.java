@@ -19,9 +19,6 @@ public class JDBCUtil {
 		}
 		return connection;
 	}
-<<<<<<< HEAD
+
 }
-=======
-	
-}
->>>>>>> branch 'main' of https://github.com/FernandaGio/ProjetoIntegrador.git
+

@@ -10,10 +10,13 @@ import java.util.ResourceBundle;
 import JDBC.Item;
 import JDBC.ItemDAO;
 import JDBC.ItemDAOJDBC;
+import application.MainCadastroUser;
+import application.MainEstoque;
 import application.MainInformacoesItem;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -23,6 +26,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import model.Colunas;
@@ -31,7 +36,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 	public class ControleEstoque implements Initializable {
 
-		 @FXML
+		 	private static final EventHandler<? super MouseEvent> MouseEvent = null;
+
+			@FXML
 		    private Button btnCadastroItem;
 
 		    @FXML
@@ -88,8 +95,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 		    @FXML
 		    private TableColumn<Item, String> tColumnEstado;
 
-		   // @FXML
-		   // private TableColumn<?, ?> tColumnMovimentacao;
+		    @FXML
+		    private TableColumn<Item,String> tColumnEditar;
 
 		    @FXML
 		    private TableColumn<Item, String> tColumnFornecedor;
@@ -124,7 +131,29 @@ import javafx.scene.control.cell.PropertyValueFactory;
 		    @FXML
 		    private ImageView imgNotificacao;
 		    
-		    
+		    @FXML
+		    private Button btnEditar;
+
+		    @FXML
+		    private ImageView imgEditarItem;
+
+		    @FXML
+		    private Button btnEditarEstoque;
+
+		    @FXML
+		    private ImageView imgEditarEstoque;
+
+		    @FXML
+		    void onClickEditarEstoque(ActionEvent event) {
+
+		    }
+
+		    @FXML
+		    void onClickEditar(ActionEvent event) {
+		    	Item item = tbviewEstoque.getSelectionModel().getSelectedItem();
+		    	System.out.println(item.getCodigo_item());
+		    }
+  
 		    private List<Colunas> colunas = new ArrayList<>();//lista de colunas
 		    
 		    @FXML
@@ -146,7 +175,18 @@ import javafx.scene.control.cell.PropertyValueFactory;
 				imgBuscar.setOnMouseClicked(MouseEvent ->{
 		    		botaoBuscar();
 		    	});
-			
+				
+				//duplo clique em TableView
+				tbviewEstoque.setOnMouseClicked((MouseEvent e)->{
+					if (e.getButton().equals(MouseButton.PRIMARY) && e.getClickCount() == 2){
+						MainCadastroUser m= new MainCadastroUser();
+						try {
+							m.start(new Stage());
+						} catch (Exception e1) {
+							e1.printStackTrace();
+						}
+					}
+				});
 			}
 			
 			private void botaoBuscar() {
@@ -156,7 +196,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 				//tbviewEstoque.setItems(buscar());
 				 ArrayList<Item> itens = itemdao.buscar(cbColuna.getSelectionModel().getSelectedItem().getNome(), txtBuscar.getText());
 				 for(Item i: itens)
-					 System.out.println(i.getDescricao_item());
+					//System.out.println(i.getDescricao_item());
 				 listar(itens);			
 			}
 			
@@ -192,19 +232,18 @@ import javafx.scene.control.cell.PropertyValueFactory;
 				return Itens;
 			}
 			
-			//método para carregar colunas no combo box
+			//método para carregar colunas no combo box de pesquisa
 			
 			public ObservableList<Colunas> coluna;
 			
 			public void carregarColunas() {
 				Colunas coluna1 = new Colunas(1, "Código");
-				Colunas coluna2 = new Colunas(2, "Data");
+				Colunas coluna2 = new Colunas(2, "Estado");
 				Colunas coluna3 = new Colunas(3, "Descrição");
 				Colunas coluna4 = new Colunas(4, "Marca");
 				Colunas coluna5 = new Colunas(5, "Referência");
 				Colunas coluna6 = new Colunas(6, "Quantidade");
 				Colunas coluna7 = new Colunas(7, "Local");
-				Colunas coluna8 = new Colunas(8, "Estado");
 				
 				colunas.add(coluna1);
 				colunas.add(coluna2);
@@ -213,7 +252,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 				colunas.add(coluna5);
 				colunas.add(coluna6);
 				colunas.add(coluna7);
-				colunas.add(coluna8);
 				
 				coluna = FXCollections.observableArrayList(colunas);
 				cbColuna.setItems(coluna);
@@ -223,7 +261,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 			/*private ObservableList<Item> buscar(){
 				ObservableList<Item> itemPesquisado = FXCollections.observableArrayList();
 				for(int x = 0; x< Itens.size(); x++){
-					if(Itens.get(x).getDescricao_item().contains(txtBuscar.getText())){
+					if(Itens.get(x).getDescricao_item().contains(txtBuscar.getText())||Itens.get(x).getEstado_item().contains(txtBuscar.getText())||Itens.get(x).getMarca_item().contains(txtBuscar.getText())||Itens.get(x).getLocal_item().contains(txtBuscar.getText())){
 						itemPesquisado.add(Itens.get(x));
 					}
 				}

@@ -1,16 +1,16 @@
 package JDBC;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class JDBC {
 	
 	public static void main(String[] args) {
 		
-<<<<<<< HEAD
 
 		// TESTANDO MÉTODO DE INSERIR
-		Item item = new Item("Tomada Simples", "9881 Steck Indústria Elétrica  LTDA", "Steck", 56, "AB", 8, 60, 
-				"4274", "2020-02-20", "Ativo", "exemplo");
+		Item item = new Item("Tomada", "9881 Steck Indústria Elétrica  LTDA", "ABB", 69, "AB", 8, 60, 
+				"4274", new Date(), "Inativo", "exemplo");
 		
 		ItemDAO dao = new ItemDAOJDBC();
 		
@@ -58,8 +58,7 @@ public class JDBC {
 		//BUSCANDO NO BANCO DE DADOS
 		//ArrayList<Item> itens = dao.buscar();
 	}
-}
-=======
+
 		//Item item = new Item("Plug3P+32A Vermelho", "9881 Steck Indústria Elétrica  LTDA", "Steck", 102, 56, "AB", 8, 60, 
 		//		"4274", "00/00/00", "Ativo", "exemplo");
 		
@@ -88,7 +87,7 @@ public class JDBC {
 		//dao.atualizar(item);
 		
 		
-		Item item = new Item();
+	/*	Item item = new Item();
 		
 		item.setCodigo_item(102);
 		
@@ -96,7 +95,7 @@ public class JDBC {
 		
 		dao.remover(item);
 		
-		
+		*/
 		
 		//ArrayList<Item> itens = dao.listar();
 		
@@ -104,5 +103,4 @@ public class JDBC {
 		//	System.out.println(it.getCodigo_item()+" "+it.getQuant_atual_item());
 		//}
 	}
-}
->>>>>>> branch 'main' of https://github.com/FernandaGio/ProjetoIntegrador.git
+

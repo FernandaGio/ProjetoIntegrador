@@ -11,14 +11,8 @@ public interface ItemDAO {
 	public void remover(Item item);
 	
 	public ArrayList<Item> listar();
-<<<<<<< HEAD
 
 	public ArrayList<Item> buscar(String coluna, String buscar);
 	
 }
 
-=======
-	
-	
-}
->>>>>>> branch 'main' of https://github.com/FernandaGio/ProjetoIntegrador.git
