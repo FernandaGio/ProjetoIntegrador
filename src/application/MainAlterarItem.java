@@ -1,12 +1,19 @@
 package application;
 
+import ControlesTelas.ControleAlterarItem;
+import ControlesTelas.ControleInformacoesItem;
+import JDBC.Item;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class MainInformacoesItem extends Application {
+public class MainAlterarItem extends Application {
+	
+	public MainAlterarItem(Item item1) {
+		ControleAlterarItem.setItem2(item1);	
+	}
 	
 	private static Stage stage;
 	
@@ -14,13 +21,13 @@ public class MainInformacoesItem extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		
-		FXMLLoader root = new FXMLLoader (getClass().getResource("/Telas/InformacoesItemTela.fxml"));
+		FXMLLoader root = new FXMLLoader (getClass().getResource("/Telas/AlterarItemTela.fxml"));
 		Parent telaInformacoesItem = root.load();
 			
 		Scene telaInformacoesItemLayout = new Scene(telaInformacoesItem);	
-		telaInformacoesItemLayout.getStylesheets().add(getClass().getResource("/ArquivosCSS/applicationInformacoesItem.css").toExternalForm());	
+		telaInformacoesItemLayout.getStylesheets().add(getClass().getResource("/ArquivosCSS/applicationAlterarItem.css").toExternalForm());	
 		stage.setScene(telaInformacoesItemLayout);	
-		stage.setTitle("Cadastro do Item");
+		stage.setTitle("Informações do Item");
 		stage.resizableProperty().setValue(Boolean.FALSE);
 		stage.show();
 		setStage(stage);
@@ -32,7 +39,7 @@ public class MainInformacoesItem extends Application {
 	}
 	
 	public static void setStage(Stage stage) {
-		MainInformacoesItem.stage = stage;
+		MainAlterarItem.stage = stage;
 	}
 	
 	public static void main(String[] args) {

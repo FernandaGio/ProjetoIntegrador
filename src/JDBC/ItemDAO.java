@@ -1,6 +1,7 @@
 package JDBC;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public interface ItemDAO {
 	
@@ -13,6 +14,8 @@ public interface ItemDAO {
 	public ArrayList<Item> listar();
 
 	public ArrayList<Item> buscar(String coluna, String buscar);
+	
+	public ArrayList<Item> buscarData(Date dataIni, Date dataFim);
 	
 }
 

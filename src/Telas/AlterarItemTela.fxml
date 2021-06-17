@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="525.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ControlesTelas.ControleInformacoesItem">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="525.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ControlesTelas.ControleAlterarItem">
    <children>
       <GridPane layoutX="54.0" layoutY="146.0" prefHeight="60.0" prefWidth="415.0">
         <columnConstraints>
@@ -166,7 +166,7 @@
          </children>
       </GridPane>
       <Circle fill="#bcc9d9" layoutX="260.0" layoutY="47.0" radius="34.0" stroke="BLACK" strokeType="INSIDE" />
-      <Button fx:id="btCadastrar" layoutX="216.0" layoutY="395.0" mnemonicParsing="false" onAction="#onClickCadastrarItem" prefHeight="26.0" prefWidth="79.0" style="-fx-background-radius: 30; -fx-background-color: BCC9D9;" text="Cadastrar">
+      <Button fx:id="btSalvar" layoutX="196.0" layoutY="397.0" mnemonicParsing="false" onAction="#onClickSalvar" prefHeight="30.0" prefWidth="119.0" style="-fx-background-radius: 30; -fx-background-color: BCC9D9;" text="Salvar Alteração">
          <font>
             <Font size="14.0" />
          </font>
@@ -176,7 +176,7 @@
             <Image url="@../Imagens/Itens.png" />
          </image>
       </ImageView>
-      <Text fill="#e0e0e0" layoutX="142.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastro do Item">
+      <Text fill="#e0e0e0" layoutX="123.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Informações do Item">
          <font>
             <Font name="System Bold" size="28.0" />
          </font>

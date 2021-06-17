@@ -21,6 +21,7 @@ public class MainEstoque extends Application {
 		telaEstoqueLayout.getStylesheets().add(getClass().getResource("/ArquivosCSS/applicationEstoque.css").toExternalForm());	
 		stage.setScene(telaEstoqueLayout);	
 		stage.setTitle("Sistema de Estoque - K3");
+		stage.resizableProperty().setValue(Boolean.FALSE);
 		stage.show();	
 		setStage(stage);
 			 

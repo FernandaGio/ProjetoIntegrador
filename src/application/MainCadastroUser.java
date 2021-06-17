@@ -21,6 +21,7 @@ public class MainCadastroUser extends Application {
 		telaCadastroUserLayout.getStylesheets().add(getClass().getResource("/ArquivosCSS/applicationCadastroUser.css").toExternalForm());	
 		stage.setScene(telaCadastroUserLayout);	
 		stage.setTitle("Cadastro de Usuários");
+		stage.resizableProperty().setValue(Boolean.FALSE);
 		stage.show();	
 		setStage(stage);
 			 

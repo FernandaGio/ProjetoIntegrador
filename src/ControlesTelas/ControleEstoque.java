@@ -3,6 +3,8 @@ package ControlesTelas;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -10,6 +12,7 @@ import java.util.ResourceBundle;
 import JDBC.Item;
 import JDBC.ItemDAO;
 import JDBC.ItemDAOJDBC;
+import application.MainAlterarItem;
 import application.MainCadastroUser;
 import application.MainEstoque;
 import application.MainInformacoesItem;
@@ -19,6 +22,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -142,6 +147,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 		    @FXML
 		    private ImageView imgEditarEstoque;
+		    
+		    @FXML
+		    private ImageView imgBuscarData;
+		    
 
 		    @FXML
 		    void onClickEditarEstoque(ActionEvent event) {
@@ -149,15 +158,28 @@ import javafx.scene.control.cell.PropertyValueFactory;
 		    }
 
 		    @FXML
-		    void onClickEditar(ActionEvent event) {
-		    	Item item = tbviewEstoque.getSelectionModel().getSelectedItem();
-		    	System.out.println(item.getCodigo_item());
+		    public void onClickEditar(ActionEvent event) {
+		    	Item itemSelecionado = tbviewEstoque.getSelectionModel().getSelectedItem();
+		    	if(itemSelecionado!= null) {
+		    		MainAlterarItem m= new MainAlterarItem(itemSelecionado);
+					fecha();
+					try {
+						m.start(new Stage());
+					}catch (Exception e1) {
+						e1.printStackTrace();
+					}
+		    	}else {
+		    		Alert alert = new Alert(AlertType.WARNING);
+					alert.setHeaderText("Selecione um item");
+					alert.show();
+		    	}
 		    }
   
-		    private List<Colunas> colunas = new ArrayList<>();//lista de colunas
+
+			private List<Colunas> colunas = new ArrayList<>();//lista de colunas
 		    
 		    @FXML
-		    public void onClickbtnCadastrarItem(ActionEvent event) {
+		    public void onClickbtnCadastrarItem(ActionEvent event) {//para abrir a tela cadastrar item
 		    	MainInformacoesItem m= new MainInformacoesItem();
 				fecha();
 				try {
@@ -168,12 +190,16 @@ import javafx.scene.control.cell.PropertyValueFactory;
 			};
 			private void fecha() {
 		}
+			
 			@Override
 			public void initialize(URL url, ResourceBundle rb) {
 				initTable();
 				carregarColunas();
 				imgBuscar.setOnMouseClicked(MouseEvent ->{
 		    		botaoBuscar();
+		    	});
+				imgBuscarData.setOnMouseClicked(MouseEvent ->{
+		    		botaoBuscarData();
 		    	});
 				
 				//duplo clique em TableView
@@ -187,14 +213,28 @@ import javafx.scene.control.cell.PropertyValueFactory;
 						}
 					}
 				});
+				
 			}
 			
+			private void botaoBuscarData() {
+				LocalDate dataInicial = dpDataInicial.getValue();
+				LocalDate dataFinal = dpDataFinal.getValue();
+				Date dataIni = (Date) Date.from(dataInicial.atStartOfDay(ZoneId.systemDefault()).toInstant());
+				Date dataFim = (Date) Date.from(dataFinal.atStartOfDay(ZoneId.systemDefault()).toInstant());
+				ItemDAOJDBC itemdao = new ItemDAOJDBC(); 
+				//ArrayList<Item> itens = itemdao.buscarData(dataIni, dataFim);
+				System.out.println(dataIni);
+				System.out.println(dataFim);
+				//for(Item i: itens)
+				//	listar(itens);			
+			}
+				
+
 			private void botaoBuscar() {
 				ItemDAOJDBC itemdao = new ItemDAOJDBC(); 
 				Colunas coluna = cbColuna.getSelectionModel().getSelectedItem();
 				String colunaPesquisada = coluna.getNome();
-				//tbviewEstoque.setItems(buscar());
-				 ArrayList<Item> itens = itemdao.buscar(cbColuna.getSelectionModel().getSelectedItem().getNome(), txtBuscar.getText());
+				ArrayList<Item> itens = itemdao.buscar(cbColuna.getSelectionModel().getSelectedItem().getNome(), txtBuscar.getText());
 				 for(Item i: itens)
 					//System.out.println(i.getDescricao_item());
 				 listar(itens);			
@@ -202,7 +242,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 			
 			public void listar(ArrayList<Item> item){
 				ItemDAO dao = new ItemDAOJDBC();
-				Itens = FXCollections.observableArrayList(item);//teste de pesquisa
 				tbviewEstoque.setItems(Itens);
 				
 			}
@@ -228,7 +267,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 			
 			public ObservableList<Item> listar(){
 				ItemDAO dao = new ItemDAOJDBC();
-				Itens = FXCollections.observableArrayList(dao.listar());//teste de pesquisa
+				Itens = FXCollections.observableArrayList(dao.listar());
 				return Itens;
 			}
 			
@@ -258,7 +297,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 				
 			}
 			//teste de pesquisa
-			/*private ObservableList<Item> buscar(){
+			/*private ObservableList<Item> buscarData(){
 				ObservableList<Item> itemPesquisado = FXCollections.observableArrayList();
 				for(int x = 0; x< Itens.size(); x++){
 					if(Itens.get(x).getDescricao_item().contains(txtBuscar.getText())||Itens.get(x).getEstado_item().contains(txtBuscar.getText())||Itens.get(x).getMarca_item().contains(txtBuscar.getText())||Itens.get(x).getLocal_item().contains(txtBuscar.getText())){
