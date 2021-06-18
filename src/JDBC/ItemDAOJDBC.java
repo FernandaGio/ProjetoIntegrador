@@ -52,7 +52,7 @@ public class ItemDAOJDBC implements ItemDAO {
 	
 	
 	@Override
-	public void atualizar(Item item) {
+	public boolean atualizar(Item item) {
 		
 		String sql = "update item set descricao_item=?, fornecedor_item=?, marca_item=?, quant_atual_item=?, local_item=?, "
 				+ "estoque_min_item=?, estoque_max_item=?, referencia_marca_item=?, data_entrada_item=?, estado_item=?, "
@@ -77,10 +77,38 @@ public class ItemDAOJDBC implements ItemDAO {
 			
 			preparedStatement.executeUpdate();
 			
+			System.out.println(sql);
+			return true;
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}	
+		}
+		return false;	
 	}
+	
+	@Override
+	public boolean atualizarQuantidade(Item item) {
+		
+		String sql = "update item set quant_atual_item=? where codigo_item=?;";
+		
+		PreparedStatement preparedStatement;
+		try {
+			preparedStatement = banco.getConnection().prepareStatement(sql);
+			
+			preparedStatement.setInt(1, item.getQuant_atual_item());
+			preparedStatement.setInt(2, item.getCodigo_item());
+			
+			preparedStatement.executeUpdate();
+			
+			System.out.println(sql);
+			return true;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;	
+	}
+	
 	
 	
 	@Override
@@ -178,6 +206,7 @@ public class ItemDAOJDBC implements ItemDAO {
 				coluna = "estado_item";
 				break;
 		}
+ 
 			//executa consultas diferentes de acordo com o tipo da dado pesquisado
 			if (tipo) {
 				sql = sql + coluna + " = " + buscar + ";";
@@ -188,7 +217,6 @@ public class ItemDAOJDBC implements ItemDAO {
 			}else if(buscar.equalsIgnoreCase("")) {//serve para listar o estoque todo quando o campo buscar estiver vazio
 				listar();
 			}
-			
 			
 			ResultSet resultSet = preparedStatement.executeQuery();
 			
@@ -219,20 +247,19 @@ public class ItemDAOJDBC implements ItemDAO {
 		return itens;
 	}
 	
-public ArrayList<Item> buscarData(java.util.Date dataIni, java.util.Date dataFim) {
+public ArrayList<Item> buscarData(String dataIni, String dataFim) {
 		
 		ArrayList<Item> itens = new ArrayList<Item>();
 		
-		Boolean tipo = false;
 		String sql = "select * from item where data_entrada_item between "; 
 		
 		PreparedStatement preparedStatement = null;
 		try {
 			sql = sql + "'" + dataIni + "' and '"+ dataFim + "' ;";
 			preparedStatement = banco.getConnection().prepareStatement(sql);
-			System.out.println(sql);
-			//}else if(buscarData.equalsIgnoreCase("")) {//serve para listar o estoque todo quando o campo buscar estiver vazio
-				//listar();
+			/*if(buscaData.equalsIgnoreCase("")) {//serve para listar o estoque todo quando o campo buscar estiver vazio
+				listar();
+			}*/
 		
 			
 	

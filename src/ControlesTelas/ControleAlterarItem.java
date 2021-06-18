@@ -2,6 +2,7 @@ package ControlesTelas;
 
 import java.io.File;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -80,7 +81,7 @@ public class ControleAlterarItem implements Initializable{
 	    private TextField txtReferencia;
 
 	    @FXML
-	    private DatePicker dpDataEntrada;
+	    private TextField txtDataEntrada;
 
 	    @FXML
 	    private Label lblDataEntrada;
@@ -112,6 +113,12 @@ public class ControleAlterarItem implements Initializable{
 	    @FXML
 	    private Button btSalvar;
 	    
+	    @FXML
+	    private Label lblCodigo;
+
+	    @FXML
+	    private TextField txtCod;
+	    
 	    private String caminhoFoto;
 	    
 	    private static Item item2;
@@ -127,18 +134,31 @@ public class ControleAlterarItem implements Initializable{
 
     @FXML
     void onClickSalvar(ActionEvent event) {
-    	atualizar();
+    	//atualizar();
     }
     
-   public void atualizar() {
-    	ItemDAO dao = new ItemDAOJDBC();
+ /* public void atualizar() {
     	String descricao = txtDescricao.getText(),marca = txtMarca.getText(),fornecedor = txtFornecedor.getText(), local = txtLocal.getText(), referencia = txtReferencia.getText(), estadoItem = estado.getSelectedToggle().toString(); 
     	int quant_atual = Integer.parseInt(txtQuantAtual.getText()), estMin = Integer.parseInt(txtEstMin.getText()), estMax = Integer.parseInt(txtEstMax.getText());
     	Date data = (Date) dpDataEntrada.getDayCellFactory();
     	
-    	Item i = new Item(descricao,fornecedor,marca,quant_atual,local,estMin,estMax, referencia, data, estadoItem, caminhoFoto);
+    	System.out.println(data);
+    	
+    	Item i = new Item(descricao, fornecedor, marca, quant_atual, local, estMin, estMax, referencia, //data, estadoItem, caminhoFoto);
+    	ItemDAO itemdao = new ItemDAOJDBC();
+    	/*System.out.println(descricao);
+    	System.out.println(fornecedor);
+    	System.out.println(marca);
+    	System.out.println(referencia);
+    	System.out.println(local);
+    	System.out.println(caminhoFoto);
+    	System.out.println(quant_atual);
+    	System.out.println(estMin);
+    	System.out.println(estMax);
+    	System.out.println(data);
+    	System.out.println(estadoItem);
     	//problema com dao.atualizar()
-    	/*if(dao.atualizar(i)){
+    	if(itemdao.atualizar(i)) {
     		Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setHeaderText("Alteração concluída com sucesso!");
 			alert.show();
@@ -146,8 +166,8 @@ public class ControleAlterarItem implements Initializable{
     		Alert alert = new Alert(AlertType.ERROR);
 			alert.setHeaderText("Não foi possível realizar alteração.");
 			alert.show();
-    	}*/
-	}
+    	}
+	}*/
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {	
@@ -156,6 +176,7 @@ public class ControleAlterarItem implements Initializable{
     	});
  
     	initItem();
+    	
     }
     
 	 private void cadastrarItem() {
@@ -200,6 +221,9 @@ public class ControleAlterarItem implements Initializable{
 		 txtEstMin.setText(String.valueOf(item2.getEstoque_min_item()));
 		 txtReferencia.setText(item2.getReferencia_marca_item());
 		 txtLocal.setText(item2.getLocal_item());
+		 txtCod.setText(String.valueOf(item2.getCodigo_item()));
+		// txtDataEntrada.setText(item2.getData_entrada_item());
+		 
 		 //Problemas para retornar a imagem e selecionar RadioButton
 		 imgFotoItem.setImage(new Image("file:///" + item2.getFoto_item()));
 		 caminhoFoto = item2.getFoto_item();

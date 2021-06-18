@@ -16,6 +16,7 @@ import application.MainAlterarItem;
 import application.MainCadastroUser;
 import application.MainEstoque;
 import application.MainInformacoesItem;
+import application.MainMovimentacaoItem;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -154,7 +155,20 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 		    @FXML
 		    void onClickEditarEstoque(ActionEvent event) {
-
+		    	Item itemSelecionado = tbviewEstoque.getSelectionModel().getSelectedItem();
+		    	if(itemSelecionado!= null) {
+		    		MainMovimentacaoItem m= new MainMovimentacaoItem(itemSelecionado);
+					fecha();
+					try {
+						m.start(new Stage());
+					}catch (Exception e1) {
+						e1.printStackTrace();
+					}
+		    	}else {
+		    		Alert alert = new Alert(AlertType.WARNING);
+					alert.setHeaderText("Selecione um item");
+					alert.show();
+		    	}
 		    }
 
 		    @FXML
@@ -219,14 +233,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 			private void botaoBuscarData() {
 				LocalDate dataInicial = dpDataInicial.getValue();
 				LocalDate dataFinal = dpDataFinal.getValue();
-				Date dataIni = (Date) Date.from(dataInicial.atStartOfDay(ZoneId.systemDefault()).toInstant());
-				Date dataFim = (Date) Date.from(dataFinal.atStartOfDay(ZoneId.systemDefault()).toInstant());
+				//Date dataIni = (Date) Date.from(dataInicial.atStartOfDay(ZoneId.systemDefault()).toInstant());
 				ItemDAOJDBC itemdao = new ItemDAOJDBC(); 
-				//ArrayList<Item> itens = itemdao.buscarData(dataIni, dataFim);
-				System.out.println(dataIni);
-				System.out.println(dataFim);
-				//for(Item i: itens)
-				//	listar(itens);			
+				ArrayList<Item> itens = itemdao.buscarData("" + dataInicial, "" + dataFinal);
+				//System.out.println(dataIni);
+				//System.out.println(dataFim);
+				for(Item i: itens)
+					listar(itens);			
 			}
 				
 
@@ -235,13 +248,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 				Colunas coluna = cbColuna.getSelectionModel().getSelectedItem();
 				String colunaPesquisada = coluna.getNome();
 				ArrayList<Item> itens = itemdao.buscar(cbColuna.getSelectionModel().getSelectedItem().getNome(), txtBuscar.getText());
-				 for(Item i: itens)
-					//System.out.println(i.getDescricao_item());
-				 listar(itens);			
+				for(Item i: itens)
+				listar(itens);			
 			}
 			
 			public void listar(ArrayList<Item> item){
 				ItemDAO dao = new ItemDAOJDBC();
+				Itens  =  FXCollections . observableArrayList (item);
 				tbviewEstoque.setItems(Itens);
 				
 			}

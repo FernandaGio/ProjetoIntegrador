@@ -7,7 +7,7 @@ public interface ItemDAO {
 	
 	public void inserir(Item item);
 	
-	public void atualizar(Item item);
+	public boolean atualizar(Item item);
 	
 	public void remover(Item item);
 	
@@ -15,7 +15,9 @@ public interface ItemDAO {
 
 	public ArrayList<Item> buscar(String coluna, String buscar);
 	
-	public ArrayList<Item> buscarData(Date dataIni, Date dataFim);
+	public ArrayList<Item> buscarData(String dataIni, String dataFim);
+
+	public boolean atualizarQuantidade(Item item);
 	
 }
 

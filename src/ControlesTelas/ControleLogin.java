@@ -22,8 +22,6 @@ import javafx.stage.Stage;
 
 
 public class ControleLogin implements Initializable{
-	
-
 
 	    @FXML 
 	    private Label lblSenha;
@@ -95,7 +93,6 @@ public class ControleLogin implements Initializable{
 						} catch (Exception e1) {
 							e1.printStackTrace();
 						}	
-		
 					}else {
 						Alert alert = new Alert(AlertType.ERROR);
 						alert.setTitle("Erro");
