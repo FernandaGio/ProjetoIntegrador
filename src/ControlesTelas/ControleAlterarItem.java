@@ -2,7 +2,10 @@ package ControlesTelas;
 
 import java.io.File;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -105,6 +108,9 @@ public class ControleAlterarItem implements Initializable{
 	    private RadioButton rbAtivo;
 	    
 	    @FXML
+	    private ImageView imgVisualizarFoto;
+	    
+	    @FXML
 	    private ImageView imgFotoItem;
 	    
 	    @FXML
@@ -122,6 +128,8 @@ public class ControleAlterarItem implements Initializable{
 	    private String caminhoFoto;
 	    
 	    private static Item item2;
+	    
+	    private Date dateFormatte;
 
     
     public static Item getItem2() {
@@ -134,18 +142,15 @@ public class ControleAlterarItem implements Initializable{
 
     @FXML
     void onClickSalvar(ActionEvent event) {
-    	//atualizar();
+    	atualizar();
     }
     
- /* public void atualizar() {
-    	String descricao = txtDescricao.getText(),marca = txtMarca.getText(),fornecedor = txtFornecedor.getText(), local = txtLocal.getText(), referencia = txtReferencia.getText(), estadoItem = estado.getSelectedToggle().toString(); 
-    	int quant_atual = Integer.parseInt(txtQuantAtual.getText()), estMin = Integer.parseInt(txtEstMin.getText()), estMax = Integer.parseInt(txtEstMax.getText());
-    	Date data = (Date) dpDataEntrada.getDayCellFactory();
-    	
-    	System.out.println(data);
-    	
-    	Item i = new Item(descricao, fornecedor, marca, quant_atual, local, estMin, estMax, referencia, //data, estadoItem, caminhoFoto);
-    	ItemDAO itemdao = new ItemDAOJDBC();
+    public void atualizar() {
+    	String descricao_item = txtDescricao.getText(), marca_item = txtMarca.getText(),fornecedor_item = txtFornecedor.getText();
+    	String local_item = txtLocal.getText(), referencia_marca_item = txtReferencia.getText(), estadoItem = estado.getSelectedToggle().toString(); 
+    	int estoque_min_item = Integer.parseInt(txtEstMin.getText()), estoque_max_item = Integer.parseInt(txtEstMax.getText());
+    	   
+    	Item item = new Item(descricao_item, fornecedor_item, marca_item, local_item, estoque_min_item, estoque_max_item, referencia_marca_item);
     	/*System.out.println(descricao);
     	System.out.println(fornecedor);
     	System.out.println(marca);
@@ -154,11 +159,11 @@ public class ControleAlterarItem implements Initializable{
     	System.out.println(caminhoFoto);
     	System.out.println(quant_atual);
     	System.out.println(estMin);
-    	System.out.println(estMax);
-    	System.out.println(data);
-    	System.out.println(estadoItem);
+    	System.out.println(estMax);*/
+    	//System.out.println(estadoItem);
     	//problema com dao.atualizar()
-    	if(itemdao.atualizar(i)) {
+    	ItemDAO itemdao = new ItemDAOJDBC();
+    	if(itemdao.atualizar(item)) {
     		Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setHeaderText("Alteração concluída com sucesso!");
 			alert.show();
@@ -167,7 +172,7 @@ public class ControleAlterarItem implements Initializable{
 			alert.setHeaderText("Não foi possível realizar alteração.");
 			alert.show();
     	}
-	}*/
+	}
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {	
@@ -178,27 +183,6 @@ public class ControleAlterarItem implements Initializable{
     	initItem();
     	
     }
-    
-	 private void cadastrarItem() {
-		 /*String descricao = txtDescricao.getText(),
-				classificacao = txtClassificacao.getText(),
-				fornecedor = txtFornecedor.getText();
-				//não adicionei marca por conta do checkbox
-		 int quantidadeAtual = Integer.parseInt(txtQuantAtual.getText());
-		 int estMin = Integer.parseInt(txtEstMin.getText());
-		 int estMax = Integer.parseInt(txtEstMin.getText());
-		 int cod = Integer.parseInt(txtCodigo.getText());*/
-		 /*não adicionei estado do item por dúvida em checkbox
-		 não adicionei data de entrada por dúvida de como converter
-		 não adicionei o local
-		 */
-		/* confirmação de cadastro(ainda não está funcionando)
-		Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-		alerta.setHeaderText("Efetuado o cadastro com sucesso.");
-		ButtonType btnOk = ButtonType.OK;
-		alerta.getButtonTypes().setAll(btnOk);*/
-		
-	 }
 	 
 	 public void selecionaFoto() {
 		 //abre aba para selecionar foto
@@ -222,18 +206,19 @@ public class ControleAlterarItem implements Initializable{
 		 txtReferencia.setText(item2.getReferencia_marca_item());
 		 txtLocal.setText(item2.getLocal_item());
 		 txtCod.setText(String.valueOf(item2.getCodigo_item()));
-		// txtDataEntrada.setText(item2.getData_entrada_item());
-		 
-		 //Problemas para retornar a imagem e selecionar RadioButton
+		 String formato = "dd/MM/yyyy";
+		 DateFormat df = new SimpleDateFormat(formato);
+		 String data = df.format(item2.getData_entrada_item());
+		 txtDataEntrada.setText(data);
+		
 		 imgFotoItem.setImage(new Image("file:///" + item2.getFoto_item()));
 		 caminhoFoto = item2.getFoto_item();
-		 RadioButton selecionado = (RadioButton)estado.getSelectedToggle();
-		 selecionado.setText(item2.getEstado_item());
-		 if(selecionado.getText() == "Inativo") {
-			 rbInativo.isSelected();
-			 rbInativo.setSelected(true);
-		 }else {
+		 //RadioButton selecionado = (RadioButton)estado.getSelectedToggle();
+		 String selecionado = item2.getEstado_item();
+		 if(selecionado.equalsIgnoreCase("Ativo")) {
 			 rbAtivo.setSelected(true);
+		 }else{
+			rbInativo.setSelected(true);
 		 }
 	 }
 }

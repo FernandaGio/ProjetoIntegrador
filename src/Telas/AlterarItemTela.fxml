@@ -141,7 +141,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <RadioButton fx:id="rbInativo" contentDisplay="CENTER" mnemonicParsing="true" selected="true" text="Inativo" textFill="#e0e0e0" GridPane.columnIndex="1">
+            <RadioButton fx:id="rbInativo" contentDisplay="CENTER" mnemonicParsing="true" text="Inativo" textFill="#e0e0e0" GridPane.columnIndex="1">
                <font>
                   <Font size="16.0" />
                </font>
@@ -154,13 +154,18 @@
                   <Font size="16.0" />
                </font>
             </RadioButton>
-            <ImageView fx:id="imgFotoItem" fitHeight="28.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+            <ImageView fx:id="imgFotoItem" fitHeight="28.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <image>
                   <Image url="@../Imagens/FotoItem.png" />
                </image>
                <GridPane.margin>
                   <Insets right="3.5" />
                </GridPane.margin>
+            </ImageView>
+            <ImageView fx:id="imgVisualizarFoto" fitHeight="28.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
+               <image>
+                  <Image url="@../Imagens/Visualizar.png" />
+               </image>
             </ImageView>
          </children>
       </GridPane>

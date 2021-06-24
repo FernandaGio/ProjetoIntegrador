@@ -102,13 +102,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 		    private TableColumn<Item, String> tColumnEstado;
 
 		    @FXML
-		    private TableColumn<Item,String> tColumnEditar;
-
-		    @FXML
 		    private TableColumn<Item, String> tColumnFornecedor;
-
-		    @FXML
-		    private TableColumn<Item, String> tColumnFoto;
 
 		    @FXML
 		    private Label lblDataFInal;
@@ -274,7 +268,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 				tColumnQuantidade.setCellValueFactory(new PropertyValueFactory("quant_atual_item"));
 				tColumnLocal.setCellValueFactory(new PropertyValueFactory("local_item"));
 				tColumnEstado.setCellValueFactory(new PropertyValueFactory("estado_item"));
-				tColumnFoto.setCellValueFactory(new PropertyValueFactory("foto_item"));
 				tbviewEstoque.setItems(listar());
 			}
 			
@@ -296,6 +289,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 				Colunas coluna5 = new Colunas(5, "Referência");
 				Colunas coluna6 = new Colunas(6, "Quantidade");
 				Colunas coluna7 = new Colunas(7, "Local");
+				Colunas coluna8 = new Colunas(8, "Fornecedor");
 				
 				colunas.add(coluna1);
 				colunas.add(coluna2);
@@ -304,6 +298,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 				colunas.add(coluna5);
 				colunas.add(coluna6);
 				colunas.add(coluna7);
+				colunas.add(coluna8);
 				
 				coluna = FXCollections.observableArrayList(colunas);
 				cbColuna.setItems(coluna);

@@ -87,7 +87,6 @@ public class ControleMovimentacaoItem implements Initializable{
 	    
 	    private static Item item2;
 	   
-	    
 	    public static Item getItem2() {
 			return item2;
 		}
@@ -97,11 +96,47 @@ public class ControleMovimentacaoItem implements Initializable{
 		}
 
 
-    @FXML
+    @SuppressWarnings("unused")
+	@FXML
     void onClickSalvarItem(ActionEvent event) {
-
-    }
-
+    	Colunas coluna = cbTipoMov.getSelectionModel().getSelectedItem();
+    	String colunaSelecionada = coluna.getNome();
+    	int quant_atual_item = Integer.parseInt(txtQuantAtual.getText());
+    	int quantidade = quant_atual_item;
+    	int quantidadeAlterada = Integer.parseInt(txtQuantAlterada.getText());
+    	System.out.println(quantidadeAlterada);
+    	Item item = new Item(quant_atual_item);
+    	switch(colunaSelecionada) {
+    	case "Devolução(D)":
+    		quantidade = quantidade + quantidadeAlterada;
+    		quant_atual_item = quantidade;
+    		break;
+    	case "Saída(S)":
+    		quantidade = quantidade - quantidadeAlterada;
+    		quant_atual_item = quantidade;
+    		break;
+    	case "Entrada(E)":
+    		quantidade = quantidade + quantidadeAlterada;
+    		quant_atual_item = quantidade;
+    		break;
+    	}
+    	if(quantidadeAlterada > 0 && coluna != null) {
+    		ItemDAOJDBC itemdao = new ItemDAOJDBC(); 
+    		if(itemdao.atualizarQuantidade(item)) {
+        		Alert alert = new Alert(AlertType.CONFIRMATION);
+    			alert.setHeaderText("Movimentação do Item concluída com sucesso!");
+    			alert.show();
+        	}else {
+        		Alert alert = new Alert(AlertType.ERROR);
+    			alert.setHeaderText("Não foi possível realizar movimentação.");
+    			alert.show();
+        	}
+    	}else{
+    		Alert alert = new Alert(AlertType.ERROR);
+			alert.setHeaderText("Digite um valor para movimentar o item.");
+			alert.show();
+    	}
+	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -137,6 +172,8 @@ public class ControleMovimentacaoItem implements Initializable{
 			alert.show();
     	}
 	}*/
+	
+	
 	
 	public ObservableList<Colunas> coluna;
 	

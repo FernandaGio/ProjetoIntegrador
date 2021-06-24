@@ -115,13 +115,11 @@
           <TableColumn fx:id="tColumnData" prefWidth="119.0" text="Incluido em:" />
             <TableColumn fx:id="tColumnDescricao" prefWidth="288.0" text="Descrição" />
             <TableColumn fx:id="tColumnMarca" minWidth="0.0" prefWidth="154.0" text="Marca" />
-            <TableColumn fx:id="tColumnRef" minWidth="0.0" prefWidth="139.0" text="Referência" />
-            <TableColumn fx:id="tColumnQuantidade" prefWidth="57.0" text="Quant." />
-            <TableColumn fx:id="tColumnLocal" minWidth="0.0" prefWidth="98.0" text="Local" />
-            <TableColumn fx:id="tColumnEstado" minWidth="0.0" prefWidth="77.0" text="Estado" />
-            <TableColumn fx:id="tColumnEditar" prefWidth="49.0" text="Editar " />
-            <TableColumn fx:id="tColumnFoto" prefWidth="52.0" text="Foto" />
-            <TableColumn fx:id="tColumnFornecedor" prefWidth="114.0" text="Fornecedor" />
+            <TableColumn fx:id="tColumnFornecedor" prefWidth="209.0" text="Fornecedor" />
+            <TableColumn fx:id="tColumnRef" minWidth="0.0" prefWidth="166.0" text="Referência" />
+            <TableColumn fx:id="tColumnQuantidade" prefWidth="79.0" text="Quant." />
+            <TableColumn fx:id="tColumnLocal" minWidth="0.0" prefWidth="48.0" text="Local" />
+            <TableColumn fx:id="tColumnEstado" minWidth="0.0" prefWidth="88.0" text="Estado" />
         </columns>
       </TableView>
       <Text fill="#031e46" layoutX="625.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Estoque">
