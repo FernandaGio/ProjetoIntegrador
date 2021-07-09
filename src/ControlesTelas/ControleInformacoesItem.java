@@ -108,6 +108,7 @@ public class ControleInformacoesItem implements Initializable{
 	    @FXML
 	    private Button btSalvar;
 	    
+	    
 	    private String caminhoFoto;
 	    
 	@FXML
@@ -127,14 +128,14 @@ public class ControleInformacoesItem implements Initializable{
     }
     
 	 private void cadastrarItem() {
-		 /*String descricao = txtDescricao.getText(),
-				classificacao = txtClassificacao.getText(),
-				forncedor = txtFornecedor.getText();
+		 String descricao_item = txtDescricao.getText(), marca_item = txtMarca.getText(),fornecedor_item = txtFornecedor.getText();
+	     String local_item = txtLocal.getText(), referencia_marca_item = txtReferencia.getText(), estadoItem = estado.getSelectedToggle().toString(); 
+	     int estoque_min_item = Integer.parseInt(txtEstMin.getText()), estoque_max_item = Integer.parseInt(txtEstMax.getText());
 				//não adicionei marca por conta do checkbox
 		 int quantidadeAtual = Integer.parseInt(txtQuantAtual.getText());
 		 int estMin = Integer.parseInt(txtEstMin.getText());
 		 int estMax = Integer.parseInt(txtEstMin.getText());
-		 int cod = Integer.parseInt(txtCodigo.getText());*/
+		/* int cod = Integer.parseInt(txtCodigo.getText());*/
 		 /*não adicionei estado do item por dúvida em checkbox
 		 não adicionei data de entrada por dúvida de como converter
 		 não adicionei o local

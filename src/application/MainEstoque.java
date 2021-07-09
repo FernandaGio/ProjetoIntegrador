@@ -1,5 +1,7 @@
 package application;
 
+import ControlesTelas.ControleEstoque;
+import ControlesTelas.ControleLogin;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,7 +15,7 @@ public class MainEstoque extends Application {
 	
 	@Override
 	public void start(Stage stage) throws Exception {
-		
+		try {
 		FXMLLoader root = new FXMLLoader (getClass().getResource("/Telas/EstoqueTela.fxml"));
 		Parent telaEstoque = root.load();
 			
@@ -24,6 +26,18 @@ public class MainEstoque extends Application {
 		stage.resizableProperty().setValue(Boolean.FALSE);
 		stage.show();	
 		setStage(stage);
+		
+		ControleEstoque controleestoque = root.getController();
+		stage.setOnCloseRequest(e->{
+			 if (controleestoque.onCloseQuery()) {
+				 System.exit(0);
+			 }else {
+				 e.consume();
+			 }
+		 });
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 			 
 	}
 	

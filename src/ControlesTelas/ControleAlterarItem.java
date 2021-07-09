@@ -13,6 +13,9 @@ import java.util.ResourceBundle;
 import JDBC.Item;
 import JDBC.ItemDAO;
 import JDBC.ItemDAOJDBC;
+import application.MainAlterarItem;
+import application.MainEstoque;
+import application.MainVisualizarFoto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -114,7 +117,7 @@ public class ControleAlterarItem implements Initializable{
 	    private ImageView imgFotoItem;
 	    
 	    @FXML
-	    private Button btCadastrar;
+	    private Button btCancelar;
 
 	    @FXML
 	    private Button btSalvar;
@@ -127,45 +130,49 @@ public class ControleAlterarItem implements Initializable{
 	    
 	    private String caminhoFoto;
 	    
+	    private String selecionado;
+	    
 	    private static Item item2;
 	    
-	    private Date dateFormatte;
-
     
     public static Item getItem2() {
 		return item2;
+		
 	}
 
 	public static void setItem2(Item item1) {
 		ControleAlterarItem.item2 = item1;
 	}
-
+	
     @FXML
     void onClickSalvar(ActionEvent event) {
     	atualizar();
+    	ItemDAO itemdao = new ItemDAOJDBC();
     }
     
-    public void atualizar() {
+    @FXML
+    void onClickCancelar(ActionEvent event) {
+    	fechar();
+    }
+    public void fechar() {
+		MainAlterarItem.getStage().close();
+	}
+
+	public void atualizar() {
+    	RadioButton estadoItem = (RadioButton) estado.getSelectedToggle();//para passar a opção escolhida pelo radiobutton
     	String descricao_item = txtDescricao.getText(), marca_item = txtMarca.getText(),fornecedor_item = txtFornecedor.getText();
-    	String local_item = txtLocal.getText(), referencia_marca_item = txtReferencia.getText(), estadoItem = estado.getSelectedToggle().toString(); 
+    	String local_item = txtLocal.getText(), referencia_marca_item = txtReferencia.getText(), estado_item = estadoItem.getText(); 
     	int estoque_min_item = Integer.parseInt(txtEstMin.getText()), estoque_max_item = Integer.parseInt(txtEstMax.getText());
-    	   
-    	Item item = new Item(descricao_item, fornecedor_item, marca_item, local_item, estoque_min_item, estoque_max_item, referencia_marca_item);
-    	/*System.out.println(descricao);
-    	System.out.println(fornecedor);
-    	System.out.println(marca);
-    	System.out.println(referencia);
-    	System.out.println(local);
-    	System.out.println(caminhoFoto);
-    	System.out.println(quant_atual);
-    	System.out.println(estMin);
-    	System.out.println(estMax);*/
-    	//System.out.println(estadoItem);
-    	//problema com dao.atualizar()
+   
+    	
+    	Item item = new Item(descricao_item, fornecedor_item, marca_item, local_item, estoque_min_item, estoque_max_item, referencia_marca_item, estado_item);
+    	item.setCodigo_item(Integer.parseInt(txtCod.getText()));
     	ItemDAO itemdao = new ItemDAOJDBC();
     	if(itemdao.atualizar(item)) {
     		Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setHeaderText("Alteração concluída com sucesso!");
+			alert.setContentText("Atualize a tela de estoque para visualizar mudança.");
+			fechar();
 			alert.show();
     	}else {
     		Alert alert = new Alert(AlertType.ERROR);
@@ -174,27 +181,29 @@ public class ControleAlterarItem implements Initializable{
     	}
 	}
 
+
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {	
-    	imgFotoItem.setOnMouseClicked(MouseEvent ->{
-    		selecionaFoto();
+  
+    	imgVisualizarFoto.setOnMouseClicked(MouseEvent ->{
+    		visualizarFoto();
     	});
- 
+    	
     	initItem();
     	
     }
 	 
-	 public void selecionaFoto() {
-		 //abre aba para selecionar foto
-		 FileChooser f = new FileChooser();//método do javafx
-		 f.getExtensionFilters().add(new ExtensionFilter("Imagens", "*.jpg", "*.jpeg", "*.png"));//filtro para apenas escolher imagens
-		 File file = f.showOpenDialog(new Stage());//método para escolher um arquivo
-		 if(file!=null) {
-		 	imgFotoItem.setImage(new Image("file:///" + file.getAbsolutePath()));
-		 	caminhoFoto = file.getAbsolutePath();
-		 }
+	 private void visualizarFoto() {
+		String foto_item = caminhoFoto;
+		Item item = new Item(foto_item);
+		MainVisualizarFoto m= new MainVisualizarFoto(foto_item);
+		try {
+			m.start(new Stage());
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
 
-	 }
 	 
 	 public void initItem() {
 		 txtFornecedor.setText(item2.getFornecedor_item());
@@ -211,10 +220,10 @@ public class ControleAlterarItem implements Initializable{
 		 String data = df.format(item2.getData_entrada_item());
 		 txtDataEntrada.setText(data);
 		
-		 imgFotoItem.setImage(new Image("file:///" + item2.getFoto_item()));
+		 //imgFotoItem.setImage(new Image("file:///" + item2.getFoto_item()));
 		 caminhoFoto = item2.getFoto_item();
 		 //RadioButton selecionado = (RadioButton)estado.getSelectedToggle();
-		 String selecionado = item2.getEstado_item();
+		 selecionado = item2.getEstado_item();
 		 if(selecionado.equalsIgnoreCase("Ativo")) {
 			 rbAtivo.setSelected(true);
 		 }else{

@@ -13,6 +13,7 @@
 .table-view {
     -fx-base: #00428c;
     -fx-control-inner-background: DFE3E9;
+    -fx-padding: 5;
 }
 
 

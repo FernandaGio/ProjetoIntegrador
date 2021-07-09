@@ -12,6 +12,8 @@ import java.util.ResourceBundle;
 import JDBC.Item;
 import JDBC.ItemDAO;
 import JDBC.ItemDAOJDBC;
+import application.MainAlterarItem;
+import application.MainMovimentacaoItem;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -95,8 +97,9 @@ public class ControleMovimentacaoItem implements Initializable{
 			ControleMovimentacaoItem.item2 = item1;
 		}
 
-
-    @SuppressWarnings("unused")
+		public void fechar() {
+			MainMovimentacaoItem.getStage().close();
+		}
 	@FXML
     void onClickSalvarItem(ActionEvent event) {
     	Colunas coluna = cbTipoMov.getSelectionModel().getSelectedItem();
@@ -104,8 +107,7 @@ public class ControleMovimentacaoItem implements Initializable{
     	int quant_atual_item = Integer.parseInt(txtQuantAtual.getText());
     	int quantidade = quant_atual_item;
     	int quantidadeAlterada = Integer.parseInt(txtQuantAlterada.getText());
-    	System.out.println(quantidadeAlterada);
-    	Item item = new Item(quant_atual_item);
+    	int codigo = Integer.parseInt(txtCodigo.getText());
     	switch(colunaSelecionada) {
     	case "Devolução(D)":
     		quantidade = quantidade + quantidadeAlterada;
@@ -120,22 +122,28 @@ public class ControleMovimentacaoItem implements Initializable{
     		quant_atual_item = quantidade;
     		break;
     	}
-    	if(quantidadeAlterada > 0 && coluna != null) {
-    		ItemDAOJDBC itemdao = new ItemDAOJDBC(); 
-    		if(itemdao.atualizarQuantidade(item)) {
-        		Alert alert = new Alert(AlertType.CONFIRMATION);
-    			alert.setHeaderText("Movimentação do Item concluída com sucesso!");
-    			alert.show();
-        	}else {
-        		Alert alert = new Alert(AlertType.ERROR);
-    			alert.setHeaderText("Não foi possível realizar movimentação.");
-    			alert.show();
-        	}
-    	}else{
-    		Alert alert = new Alert(AlertType.ERROR);
-			alert.setHeaderText("Digite um valor para movimentar o item.");
+    	try {
+    		if(quantidadeAlterada > 0 && coluna != null) {
+        		ItemDAOJDBC itemdao = new ItemDAOJDBC(); 
+        		Item item = new Item(quant_atual_item);
+        		item.setCodigo_item(codigo);
+        		if(itemdao.atualizarQuantidade(item)) {
+            		Alert alert = new Alert(AlertType.CONFIRMATION);
+        			alert.setHeaderText("Movimentação do Item concluída com sucesso!");
+        			alert.setContentText("Atualize a tela de estoque e/ou veja o histórico de movimentação.");
+        			fechar();
+        			alert.show();
+            	}else {
+            		Alert alert = new Alert(AlertType.ERROR);
+        			alert.setHeaderText("Não foi possível realizar movimentação.");
+        			alert.show();
+            	}
+    		}
+    	}catch (NullPointerException NullPointerException) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setHeaderText("Digite um valor e escolha uma coluna para movimentar o item.");
 			alert.show();
-    	}
+		}
 	}
 
 	@Override

@@ -18,6 +18,8 @@ public interface ItemDAO {
 	public ArrayList<Item> buscarData(String dataIni, String dataFim);
 
 	public boolean atualizarQuantidade(Item item);
+
+	public boolean atualizarFoto(Item item);
 	
 }
 

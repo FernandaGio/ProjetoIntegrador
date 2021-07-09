@@ -21,9 +21,28 @@ public class Item {
 	private String foto_item;
 	
 	public Item(String descricao_item, String fornecedor_item, String marca_item,
-			String local_item, int estoque_min_item, int estoque_max_item, String referencia_marca_item) {
+			String local_item, int estoque_min_item, int estoque_max_item, String referencia_marca_item, String estado_item) {
+		
+		this.descricao_item = descricao_item;
+		this.fornecedor_item = fornecedor_item;
+		this.marca_item = marca_item;
+		this.local_item = local_item;
+		this.estoque_min_item = estoque_min_item;
+		this.estoque_max_item = estoque_max_item;
+		this.referencia_marca_item = referencia_marca_item;
+		this.estado_item = estado_item;
 	
 	}
+	
+	public Item(String foto_item) {
+
+		this.foto_item = foto_item;
+	}
+	
+	public Item(int quant_atual_item) {
+		this.quant_atual_item = quant_atual_item;
+	}
+	
 	public Item(String descricao_item, String fornecedor_item, String marca_item, int quant_atual_item,
 			String local_item, int estoque_min_item, int estoque_max_item, String referencia_marca_item,
 			Date data_entrada_item, String estado_item, String foto_item) {
@@ -41,10 +60,6 @@ public class Item {
 		this.foto_item = foto_item;
 	}
 
-
-	public Item(int quant_atual_item) {
-		// TODO Auto-generated constructor stub
-	}
 	public String getDescricao_item() {
 		return descricao_item;
 	}

@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import JDBC.Usuario;
 import JDBC.UsuarioDAO;
 import JDBC.UsuarioDAOJDBC;
+import application.MainAlterarItem;
 import application.MainCadastroUser;
 import application.MainEstoque;
 import application.MainLogin;
@@ -53,18 +54,9 @@ public class ControleLogin implements Initializable{
 	    void onClickEntrar(ActionEvent event) {
 	    }
 	   
-	    
-	    public boolean onCloseQuery() {
-	    	Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-	    	alerta.setTitle("Atenção");
-	    	alerta.setHeaderText("Deseja sair do sistema?");
-	    	ButtonType btnNao = ButtonType.NO;
-	    	ButtonType btnSim = ButtonType.YES;
-	    	alerta.getButtonTypes().setAll(btnNao, btnSim);
-	    	Optional<ButtonType> opcaoEscolhida = alerta.showAndWait();
-	    	
-	    	return opcaoEscolhida.get() == btnSim ? true : false;    		
-	    }
+	    public void fechar() {
+			//MainLogin.getStage().close();	
+		}
 	    
 		@Override
 		public void initialize(URL url, ResourceBundle rb) {
@@ -72,7 +64,7 @@ public class ControleLogin implements Initializable{
 			btnCadastroUser.setOnMouseClicked(MouseEvent -> {
 				
 				MainCadastroUser m= new MainCadastroUser();
-				fecha();
+				//fecha();
 				try {
 					m.start(new Stage());
 				}catch (Exception e1) {
@@ -83,9 +75,9 @@ public class ControleLogin implements Initializable{
 			btnEntrar.setOnMouseClicked(MouseEvent -> {
 				if(txtLogin.getText().equals("root") && pfSenha.getText().equals("1234")){
 					MainEstoque m= new MainEstoque();
-					fecha();
 					try {
 						m.start(new Stage());
+						fechar();
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}	
@@ -122,9 +114,6 @@ public class ControleLogin implements Initializable{
 				}
 			});*/
 		}
-			
-		private void fecha() {
 
-		}
-				
+	
 	}

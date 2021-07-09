@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 
 
 public class MainLogin extends Application {
+	private static Stage stage;
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -32,18 +33,18 @@ public class MainLogin extends Application {
 			//carregando o controle da cena(Tela Login)
 			 ControleLogin controlelogin = root.getController();
 			 
-			 stage.setOnCloseRequest(e->{
-				 if (controlelogin.onCloseQuery()) {
-					 System.exit(0);
-				 }else {
-					 e.consume();
-				 }
-			 });
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
+	public static Stage getStage() {
+		return stage;
+	}
+	
+	public static void setStage(Stage stage) {
+		MainLogin.stage = stage;
+	}
 	public static void main(String[] args) {
 		launch(args);
 	}

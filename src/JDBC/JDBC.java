@@ -9,16 +9,16 @@ public class JDBC {
 		
 
 		// TESTANDO MÉTODO DE INSERIR
-	/*	Item item = new Item("Tomada 3 pinos", "9881 Steck Indústria Elétrica  LTDA", "ABB", 69, "AB", 8, 60, 
-				"42T456M", new Date(), "Inativo", "elefantesteste.jpgC:\\Users\\Usuario\\Pictures\\elefantesteste.jpg");
+	Item item = new Item("Plug 4 + Azul", "9881 Steck Indústria Elétrica  LTDA", "ABB", 69, "AB", 8, 60, 
+				"42T456M", new Date(), "Inativo", "C:\\Users\\Usuario\\Pictures\\elefantesteste.jpg");
 		
 		ItemDAO dao = new ItemDAOJDBC();
 		
-		dao.inserir(item);*/
+		dao.inserir(item);
 		
 		
 //TESTANDO MÉTODO DE ATUALIZAR
-		Item item = new Item(0);
+		/*Item item = new Item(0);
 			
 		/*item.setDescricao_item("Plug3P+2A Vermelho");
 		item.setFornecedor_item("10575 Materiais Elétricos Strahl");
@@ -30,12 +30,12 @@ public class JDBC {
 		item.setReferencia_marca_item("4274B");
 		//item.setData_entrada_item("01/01/01");
 		item.setEstado_item("Ativo");
-		item.setFoto_item("exemplo1");*/
+		item.setFoto_item("exemplo1");
 		//item.setCodigo_item(10);
 			
 		ItemDAO dao = new ItemDAOJDBC();
 		
-		dao.atualizarQuantidade(item);
+		dao.atualizarQuantidade(item);*/
 		
 		
 		//TESTANDO MÉTODO DE REMOVER

@@ -54,10 +54,10 @@ public class ItemDAOJDBC implements ItemDAO {
 	@Override
 	public boolean atualizar(Item item) {
 		
-		String sql = "update item set descricao_item = ?, fornecedor_item = ?, marca_item = ?, " 
-				+ "local_item = ?, estoque_min_item = ?, estoque_max_item = ?, referencia_marca_item = ? "
+		String sql = "update item set descricao_item = ?, fornecedor_item = ?, marca_item = ?, " 				
+		+ "local_item = ?, estoque_min_item = ?, estoque_max_item = ?, referencia_marca_item = ?, estado_item = ? "
 				+ "where codigo_item= ?;";
-		
+				
 		PreparedStatement preparedStatement;
 		try {
 			preparedStatement = banco.getConnection().prepareStatement(sql);
@@ -65,17 +65,19 @@ public class ItemDAOJDBC implements ItemDAO {
 			preparedStatement.setString(1, item.getDescricao_item());
 			preparedStatement.setString(2, item.getFornecedor_item());
 			preparedStatement.setString(3, item.getMarca_item());
-			//preparedStatement.setInt(4, item.getQuant_atual_item());
 			preparedStatement.setString(4, item.getLocal_item());
 			preparedStatement.setInt(5,item.getEstoque_min_item());
 			preparedStatement.setInt(6, item.getEstoque_max_item());
 			preparedStatement.setString(7, item.getReferencia_marca_item());
-			//preparedStatement.setString(9, item.getEstado_item());
-			//preparedStatement.setString(9, item.getFoto_item());
-			preparedStatement.setInt(8, item.getCodigo_item());
+			preparedStatement.setString(8, item.getEstado_item());
+			//preparedStatement.setString(9, item.getFoto_item());*/
+			preparedStatement.setString(9, Integer.toString(item.getCodigo_item()));
 			
-			System.out.println(sql);
-			preparedStatement.executeUpdate();
+			System.out.println(item.getCodigo_item());
+			System.out.println(item.getEstado_item());
+			
+			preparedStatement.execute();
+			preparedStatement.close();
 			
 			return true;
 			
@@ -86,9 +88,32 @@ public class ItemDAOJDBC implements ItemDAO {
 	}
 	
 	@Override
+	public boolean atualizarFoto(Item item) {
+		
+		String sql = "update item set foto_item = ? where codigo_item = ?;";
+		
+		PreparedStatement preparedStatement;
+		try {
+			preparedStatement = banco.getConnection().prepareStatement(sql);
+			
+			preparedStatement.setString(1, item.getFoto_item());
+			preparedStatement.setInt(2, item.getCodigo_item());
+			
+			preparedStatement.execute();
+			preparedStatement.close();
+			
+			return true;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;	
+	}
+	
+	@Override
 	public boolean atualizarQuantidade(Item item) {
 		
-		String sql = "update item set quant_atual_item = '?' where codigo_item = '?';";
+		String sql = "update item set quant_atual_item = ? where codigo_item = ?;";
 		
 		PreparedStatement preparedStatement;
 		try {
@@ -97,9 +122,8 @@ public class ItemDAOJDBC implements ItemDAO {
 			preparedStatement.setInt(1, item.getQuant_atual_item());
 			preparedStatement.setInt(2, item.getCodigo_item());
 			
-			preparedStatement.executeUpdate(sql);
-			
-			System.out.println(sql);
+			preparedStatement.execute();
+			preparedStatement.close();
 			return true;
 			
 		} catch (SQLException e) {
@@ -134,7 +158,7 @@ public class ItemDAOJDBC implements ItemDAO {
 		
 		ArrayList<Item> itens = new ArrayList<Item>();
 		
-		String sql = "select * from item;";
+		String sql = "select * from item order by estado_item;";
 		
 		try {
 			Statement statement = banco.getConnection().createStatement();
