@@ -1,60 +1,44 @@
 package JDBC;
 
-
 public class Usuario {
 
-	public int cpf;
-	public String nome = "";
-	public String senha;
-	public boolean ADM; // Se for true o usuario é Administrador. 
+	private String cpf;
+	private String nome = "";
+	private String senha;
 	
-	
-	public Usuario(int cpf, String nome, String senha, boolean aDM) {
-		super();
+	public Usuario(String cpf, String nome, String senha) {
 		this.cpf = cpf;
 		this.nome = nome;
 		this.senha = senha;
-		ADM = aDM;
 	}
 
-
-	public int getCpf() {
+	public Usuario() {
+		
+	}
+	
+	public String getCpf() {
 		return cpf;
 	}
-
-
-	public void setCpf(int cpf) {
+	
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-
-
 	public String getNome() {
 		return nome;
 	}
-
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-
 	public String getSenha() {
 		return senha;
 	}
-
-
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-
-
-	public boolean isADM() {
-		return ADM;
+	
+	public Object getLogin() {
+		return null;
 	}
-
-
-	public void setADM(boolean aDM) {
-		ADM = aDM;
-	}
-
+	
 }
+

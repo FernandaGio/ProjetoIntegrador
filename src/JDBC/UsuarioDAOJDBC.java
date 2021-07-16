@@ -1,28 +1,21 @@
-
 package JDBC;
-
 
 import java.io.Console;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class UsuarioDAOJDBC {
+public class UsuarioDAOJDBC implements UsuarioDAO {//aqui também, criado o implements
 	
 	private JDBCUtil banco;
 	
 	public UsuarioDAOJDBC() {
 		banco = new JDBCUtil();
 	}
-	
-	public enum MembroInterfaceUsuario {
-		NOME,CPF,SENHA,TUDO;
-		}
 
-	public class insert
+	public class RetornoInsert
 	{
 		boolean exito = true;
 		String mensagem;
@@ -30,10 +23,9 @@ public class UsuarioDAOJDBC {
 		Usuario usuario;
 	}
 	
-	public insert validarinserir(int cpf,String nome, String senha,String confirmarsenha) {
-		
-		 System.out.println("aa");
-		insert retornoinsert = new insert();
+	public RetornoInsert validarinserir(String cpf, String nome, String senha, String confirmarsenha) {
+
+		RetornoInsert retornoinsert = new RetornoInsert();
 		String camposnaopreenchidos = "";
 		
 	    if(nome.isEmpty())
@@ -90,19 +82,16 @@ public class UsuarioDAOJDBC {
 	    }
 	    else
 	    {
-	    	Usuario usuario = new Usuario(cpf, camposnaopreenchidos, camposnaopreenchidos, false);
+	    	Usuario usuario = new Usuario();
 
-	    	usuario.cpf = cpf;
-	    	usuario.nome = nome;
-	    	usuario.senha = senha;
-	    	usuario.ADM = false;
+	    	usuario.setCpf(cpf); 
+	    	usuario.setNome(nome); 
+	    	usuario.setSenha(senha); 
 	    	
-	    	retornoinsert.mensagem = "Usuario " + usuario.nome + " cadastrado com sucesso !";
+	    	retornoinsert.mensagem = "Usuario " + usuario.getNome() + " cadastrado com sucesso !";
 	    	try
 	    	{
-	    		inserir(usuario);
-	    		
-	    		
+	    		inserir(usuario);	    		
 	    	}
 	    	catch(Exception e)
 	    	{
@@ -115,10 +104,10 @@ public class UsuarioDAOJDBC {
 	    return retornoinsert;
 	}
 	
-	public boolean CPFCadastrado(int cpf)
+	public boolean CPFCadastrado(String cpf)
 	{
 		
-		String sql = "select * from usuario where id = " + cpf + ";";
+		String sql = "select * from usuario where cpf = " + cpf + ";";
 		PreparedStatement preparedStatement;
 		try {
 			
@@ -137,39 +126,41 @@ public class UsuarioDAOJDBC {
 		return false;
 	}
 
-	public void inserir(Usuario usuario) {
+	public boolean inserir(Usuario usuario) {
 		
 		// Index dos parametros no DB
-		// ID = 1; NOME = 2; SENHA = 3; ADM = 4;
+		// CPF = 1; NOME = 2; SENHA = 3;
 		
-		String sql = "insert into usuario values (?, ?, ?, ?);";
+		String sql = "insert into usuario values (?, ?, ?);";
 		PreparedStatement preparedStatement;
+
 		try {
 			preparedStatement = banco.getConnection().prepareStatement(sql);
-			
-			preparedStatement.setInt(1,usuario.cpf);
-			preparedStatement.setString(2, usuario.nome);
-			preparedStatement.setString(3, usuario.senha);
-			preparedStatement.setBoolean(4, usuario.ADM);
-			
+    
+			preparedStatement.setString(1,usuario.getCpf());
+			preparedStatement.setString(2, usuario.getNome());
+			preparedStatement.setString(3, usuario.getSenha());
+    
 			preparedStatement.execute();
-			
+			return true;
+    	
 		} catch (SQLException e) {
 			e.printStackTrace();
 			e.getMessage();
+			return false;
 		}
 		
 	}
 	
 	public void remover(Usuario usuario) {
 		
-		String sql = "delete from usuario where id = ?;";
+		String sql = "delete from usuario where cpf = ?;";
 		
 		PreparedStatement preparedStatement;
 		try {
 			preparedStatement = banco.getConnection().prepareStatement(sql);
 			
-			preparedStatement.setInt(1, usuario.cpf);
+			preparedStatement.setString(1, usuario.getCpf());
 			
 			preparedStatement.execute();
 			
@@ -178,68 +169,19 @@ public class UsuarioDAOJDBC {
 		}	
 	}
 	
-//public ArrayList<Usuario> listar1() {
-		
-	//	ArrayList<Usuario> itens = new ArrayList<Usuario>();
-		
-	//	String sql = "select * from usuario;";
-		
-	//	try {
-//		Statement statement = banco.getConnection().createStatement();
-			
-		// ResultSet resultSet = statement.executeQuery(sql);
-			
-	//		while(resultSet.next()) {
-				
-			// Usuario usuario = new Usuario();
-					
-		//		usuario.setNome_usuario(resultSet.getString(1));
-			//	usuario.setNome_usuario(resultSet.getInt(2));
-			//	usuario.setNome_usuario(resultSet.getString(3));
-			//	usuario.setConfirmarsenha_usuario(resultSet.getInt(4));
-	//	}
-
-
-
-
-	public void Nome(Usuario usuario) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void Cpf(Usuario Usuario) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void Senha(Usuario Usuario) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void Confirmarsenha(Usuario Usuario) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public ArrayList<Usuario> cadastrar() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public void atualizar(Usuario usuario) {
 		
       
-      String sql = "update usuario set nome = ?, senha = ? where id = ?";
+      String sql = "update usuario set nome = ?, senha = ? where cpf = ?";
 
       
 		PreparedStatement preparedStatement;
 		try {
 			preparedStatement = banco.getConnection().prepareStatement(sql);
 			
-			preparedStatement.setString(1, usuario.nome);
-			preparedStatement.setString(2, usuario.senha);
-			preparedStatement.setInt(3,usuario.cpf);
+			preparedStatement.setString(1, usuario.getNome());
+			preparedStatement.setString(2, usuario.getSenha());
+			preparedStatement.setString(3,usuario.getCpf());
 
 			preparedStatement.execute();
 			
@@ -249,8 +191,36 @@ public class UsuarioDAOJDBC {
 		
 	}
 
-	public ArrayList<Usuario> listar() {
-		// TODO Auto-generated method stub
-		return null;
+    public ArrayList<Usuario> listar() {
+    	
+		// Index dos parametros no DB
+		// CPF = 1; NOME = 2; SENHA = 3;
+    	
+		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+		
+		String sql = "select * from usuario;";
+		
+		try {
+			Statement statement = banco.getConnection().createStatement();
+			
+			ResultSet resultSet = statement.executeQuery(sql);
+			
+			while(resultSet.next()) {
+				
+				Usuario usuario = new Usuario();
+					
+				usuario.setCpf(resultSet.getString(1));
+				usuario.setNome(resultSet.getString(2));
+				usuario.setSenha(resultSet.getString(3));
+
+				
+				usuarios.add(usuario);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return usuarios;
 	}
 }

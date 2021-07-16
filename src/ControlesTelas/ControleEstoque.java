@@ -6,7 +6,9 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -181,34 +183,23 @@ import javafx.scene.control.cell.PropertyValueFactory;
 		    }
 		    
 		    @FXML
-		    protected void onClickImprimir(ActionEvent arg0){
-		    	/*URL url = getClass().getResource("/Relatorios/RelatorioEstoque.jasper");
+		    public void onClickImprimir(ActionEvent arg0) throws JRException{
+		    	URL url = getClass().getResource("/Relatorios/RelatorioEstoque.jasper");
 		    	System.out.println(url);
 		    	JasperReport jasperReport = (JasperReport) JRLoader.loadObject(url);
+		    	Map logo = new HashMap();
+				logo.put("K3_logo", "C:/Users/Usuario/eclipse-workspace/ProjetoIntegrador/src/Imagens/K3_logo.png");
 		    	
-		    	
-		    	JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, connection);
+		    	JasperPrint jasperPrint = null;
+				try {
+					jasperPrint = JasperFillManager.fillReport(jasperReport, logo, connection);
+				} catch (JRException e) {
+					e.printStackTrace();
+				}
 		    	
 		    	JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);
 		    	jasperViewer.setVisible(true);
-		    	
-		    	if(jasperViewer.isVisible()) {
-		    		Alert alert = new Alert(AlertType.WARNING);
-					alert.setHeaderText("Relatório Impresso");
-					alert.show();
-		    	}else {
-		    		Alert alert = new Alert(AlertType.WARNING);
-					alert.setHeaderText("Não foi dessa vez");
-					alert.show();
-		    	}*/
-		    	
-		    	RelatorioEstoque relatorio = new RelatorioEstoque();
-		    	List<Item> lista = null;
-		    	try {
-					relatorio.gerarRelatorio(lista);
-				}catch (Exception e1) {
-					e1.printStackTrace();
-				}
+		    	jasperViewer.toFront();
 		    	
 		    }
 

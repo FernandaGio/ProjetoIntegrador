@@ -148,7 +148,7 @@
                   <ToggleGroup fx:id="estado" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="rbAtivo" mnemonicParsing="false" text="Ativo  " textFill="#e0e0e0" toggleGroup="$estado" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+            <RadioButton fx:id="rbAtivo" contentDisplay="RIGHT" mnemonicParsing="false" text="Ativo" textFill="#e0e0e0" toggleGroup="$estado" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
                <font>
                   <Font size="16.0" />
                </font>
