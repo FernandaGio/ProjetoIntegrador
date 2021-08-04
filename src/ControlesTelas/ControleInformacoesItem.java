@@ -2,10 +2,15 @@ package ControlesTelas;
 
 import java.io.File;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 import JDBC.Item;
+import JDBC.ItemDAO;
+import JDBC.ItemDAOJDBC;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +24,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
@@ -113,11 +119,7 @@ public class ControleInformacoesItem implements Initializable{
 	    
 	@FXML
     void onClickCadastrarItem(ActionEvent event) {
-    }
-
-    @FXML
-    void onClickSalvar(ActionEvent event) {
-
+		cadastrarItem();
     }
     
     @Override
@@ -127,27 +129,38 @@ public class ControleInformacoesItem implements Initializable{
     	});
     }
     
-	 private void cadastrarItem() {
-		 String descricao_item = txtDescricao.getText(), marca_item = txtMarca.getText(),fornecedor_item = txtFornecedor.getText();
-	     String local_item = txtLocal.getText(), referencia_marca_item = txtReferencia.getText(), estadoItem = estado.getSelectedToggle().toString(); 
-	     int estoque_min_item = Integer.parseInt(txtEstMin.getText()), estoque_max_item = Integer.parseInt(txtEstMax.getText());
-				//não adicionei marca por conta do checkbox
-		 int quantidadeAtual = Integer.parseInt(txtQuantAtual.getText());
-		 int estMin = Integer.parseInt(txtEstMin.getText());
-		 int estMax = Integer.parseInt(txtEstMin.getText());
-		/* int cod = Integer.parseInt(txtCodigo.getText());*/
-		 /*não adicionei estado do item por dúvida em checkbox
-		 não adicionei data de entrada por dúvida de como converter
-		 não adicionei o local
-		 */
-		/* confirmação de cadastro(ainda não está funcionando)
-		Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-		alerta.setHeaderText("Efetuado o cadastro com sucesso.");
-		ButtonType btnOk = ButtonType.OK;
-		alerta.getButtonTypes().setAll(btnOk);*/
-		
-	 }
-	 
+    public Date asDate(LocalDate localDate) {
+	    return Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+	  }
+	
+    
+	public void cadastrarItem() {
+		 RadioButton estadoItem = (RadioButton) estado.getSelectedToggle();//para passar a opção escolhida pelo radiobutton
+	    	String descricao_item = txtDescricao.getText(), marca_item = txtMarca.getText(),fornecedor_item = txtFornecedor.getText();
+	    	String local_item = txtLocal.getText(), referencia_marca_item = txtReferencia.getText(), estado_item = estadoItem.getText(); 
+	    	int estoque_min_item = Integer.parseInt(txtEstMin.getText()), estoque_max_item = Integer.parseInt(txtEstMax.getText());
+	    	LocalDate data = dpDataEntrada.getValue();
+	    	
+	    	Item item = new Item(descricao_item, fornecedor_item, marca_item, estoque_max_item, local_item, estoque_min_item, estoque_max_item, referencia_marca_item, asDate(data), estado_item, caminhoFoto);
+	    	ItemDAO itemdao = new ItemDAOJDBC();
+	    	if(itemdao.inserir(item)) {
+	    		Alert alert = new Alert(AlertType.CONFIRMATION);
+				alert.setHeaderText("Item Cadastrado com sucesso!");
+				alert.setContentText("Atualize a tela de estoque para visualizar mudança.");
+				alert.show();
+				if(item==null) {
+					Alert alert1 = new Alert(AlertType.ERROR);
+					alert1.setHeaderText("Não foi possível realizar o cadastro.");
+					alert1.setContentText("Verifique se todos os campos estão preenchidos");
+					alert1.show();	
+				}
+	    	}else {
+	    		Alert alert = new Alert(AlertType.ERROR);
+				alert.setHeaderText("Não foi possível realizar o cadastro.");
+				alert.setContentText("Verifique se todos os campos estão preenchidos");
+				alert.show();
+	    	}
+		}
 	 public void selecionaFoto() {
 		 //abre aba para selecionar foto
 		 FileChooser f = new FileChooser();//método do javafx
@@ -162,5 +175,4 @@ public class ControleInformacoesItem implements Initializable{
 	 
 	
 }
-
 

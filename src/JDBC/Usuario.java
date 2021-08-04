@@ -36,9 +36,5 @@ public class Usuario {
 		this.senha = senha;
 	}
 	
-	public Object getLogin() {
-		return null;
-	}
-	
 }
 

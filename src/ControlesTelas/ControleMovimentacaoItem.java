@@ -9,9 +9,13 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import JDBC.HistoricoMovimentacaoItem;
+import JDBC.HistoricoMovimentacaoItemDAO;
+import JDBC.HistoricoMovimentacaoItemDAOJDBC;
 import JDBC.Item;
 import JDBC.ItemDAO;
 import JDBC.ItemDAOJDBC;
+import JDBC.Usuario;
 import application.MainAlterarItem;
 import application.MainMovimentacaoItem;
 import javafx.collections.FXCollections;
@@ -100,6 +104,19 @@ public class ControleMovimentacaoItem implements Initializable{
 		public void fechar() {
 			MainMovimentacaoItem.getStage().close();
 		}
+		
+		private static Usuario usuario;
+	    
+	    
+	    public static Usuario getusuario() {
+	    	return usuario;
+			
+		}
+	    
+	    public static void setUsuario(Usuario usuario1) {
+	    	ControleMovimentacaoItem.usuario = usuario1;
+		}
+	    
 	@FXML
     void onClickSalvarItem(ActionEvent event) {
     	Colunas coluna = cbTipoMov.getSelectionModel().getSelectedItem();
@@ -107,6 +124,7 @@ public class ControleMovimentacaoItem implements Initializable{
     	int quant_atual_item = Integer.parseInt(txtQuantAtual.getText());
     	int quantidade = quant_atual_item;
     	int quantidadeAlterada = Integer.parseInt(txtQuantAlterada.getText());
+    	int quantidadeAnterior = quantidade;
     	int codigo = Integer.parseInt(txtCodigo.getText());
     	switch(colunaSelecionada) {
     	case "Devolução(D)":
@@ -127,6 +145,9 @@ public class ControleMovimentacaoItem implements Initializable{
         		ItemDAOJDBC itemdao = new ItemDAOJDBC(); 
         		Item item = new Item(quant_atual_item);
         		item.setCodigo_item(codigo);
+        		HistoricoMovimentacaoItem historicoMovimentacaoItem = new HistoricoMovimentacaoItem(new Date(), colunaSelecionada, usuario.getCpf(), codigo, quantidadeAlterada, quant_atual_item, quantidadeAnterior);
+        		HistoricoMovimentacaoItemDAO dao = new HistoricoMovimentacaoItemDAOJDBC();
+        		dao.inserir(historicoMovimentacaoItem);
         		if(itemdao.atualizarQuantidade(item)) {
             		Alert alert = new Alert(AlertType.CONFIRMATION);
         			alert.setHeaderText("Movimentação do Item concluída com sucesso!");
@@ -161,27 +182,6 @@ public class ControleMovimentacaoItem implements Initializable{
 		 txtCodigo.setText(String.valueOf(item2.getCodigo_item()));
 	 }
 
-	/*public void atualizarMovimentacao() {
-    	String descricao = txtDescricao.getText(),marca = txtMarca.getText(),fornecedor = txtFornecedor.getText(), local = txtLocal.getText(), referencia = txtReferencia.getText(), estadoItem = estado.getSelectedToggle().toString(); 
-    	int quant_atual = Integer.parseInt(txtQuantAtual.getText()), estMin = Integer.parseInt(txtEstMin.getText()), estMax = Integer.parseInt(txtEstMax.getText());
-    	
-    	System.out.println(data);
-    	
-    	Item i = new Item(descricao, fornecedor, marca, quant_atual, local, estMin, estMax, referencia, data, estadoItem, caminhoFoto);
-    	ItemDAO itemdao = new ItemDAOJDBC();
- 
-    	if(itemdao.atualizar(i)) {
-    		Alert alert = new Alert(AlertType.CONFIRMATION);
-			alert.setHeaderText("Alteração concluída com sucesso!");
-			alert.show();
-    	}else {
-    		Alert alert = new Alert(AlertType.ERROR);
-			alert.setHeaderText("Não foi possível realizar alteração.");
-			alert.show();
-    	}
-	}*/
-	
-	
 	
 	public ObservableList<Colunas> coluna;
 	

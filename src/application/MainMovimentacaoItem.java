@@ -1,8 +1,10 @@
 package application;
 
 import ControlesTelas.ControleAlterarItem;
+import ControlesTelas.ControleEstoque;
 import ControlesTelas.ControleMovimentacaoItem;
 import JDBC.Item;
+import JDBC.Usuario;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,8 +13,9 @@ import javafx.stage.Stage;
 
 public class MainMovimentacaoItem extends Application {
 	
-	public MainMovimentacaoItem(Item item1) {
+	public MainMovimentacaoItem(Item item1, Usuario usuario1) {
 		ControleMovimentacaoItem.setItem2(item1);
+		ControleMovimentacaoItem.setUsuario(usuario1);
 	}
 	
 	private static Stage stage;

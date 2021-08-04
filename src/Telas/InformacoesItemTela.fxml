@@ -66,7 +66,7 @@
                </font>
             </Label>
             <TextField fx:id="txtQuantAtual" prefHeight="25.0" prefWidth="85.0" promptText="0" style="-fx-background-radius: 30;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label fx:id="lblEstMin" prefHeight="25.0" prefWidth="105.0" text=" Estoque Mín.:" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+            <Label fx:id="lblEstMin" prefHeight="25.0" prefWidth="105.0" text="*Estoque Mín.:" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                <font>
                   <Font size="16.0" />
                </font>
@@ -91,13 +91,13 @@
                </font>
             </Label>
             <TextField fx:id="txtLocal" prefHeight="25.0" prefWidth="111.0" promptText="A" style="-fx-background-radius: 30;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label fx:id="lblEstMax" text="Estoque Máx.:" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+            <Label fx:id="lblEstMax" text="*Estoque Máx.:" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
             <TextField fx:id="txtEstMax" prefHeight="25.0" prefWidth="85.0" promptText="0" style="-fx-background-radius: 30;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label fx:id="lblReferencia" text=" Referência:">
+            <Label fx:id="lblReferencia" text="*Referência:">
                <font>
                   <Font size="16.0" />
                </font>
@@ -132,7 +132,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="lblEstadoItem" text="  Estado do Item:">
+            <Label fx:id="lblEstadoItem" text="*Estado do Item:">
                <font>
                   <Font size="16.0" />
                </font>

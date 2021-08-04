@@ -16,7 +16,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.paint.RadialGradient?>
 <?import javafx.scene.paint.Stop?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -34,7 +33,7 @@
          </image>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00428c" height="78.0" layoutX="221.0" layoutY="12.0" stroke="#00428c" strokeType="INSIDE" width="300.0" />
-      <GridPane layoutX="233.0" layoutY="31.0" prefHeight="53.0" prefWidth="241.0">
+      <GridPane layoutX="233.0" layoutY="28.0" prefHeight="60.0" prefWidth="240.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="152.0" minWidth="10.0" prefWidth="48.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="256.0" minWidth="10.0" prefWidth="168.0" />
@@ -57,7 +56,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label fx:id="lblBuscar" prefHeight="26.0" prefWidth="58.0" text="Buscar:">
+            <Label fx:id="lblBuscar" prefHeight="26.0" prefWidth="52.0" text="Buscar:">
                <textFill>
                   <RadialGradient centerX="0.961111111111111" proportional="false" radius="0.5">
                      <stops>
@@ -70,43 +69,18 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="txtBuscar" GridPane.columnIndex="1" />
+            <TextField fx:id="txtBuscar" prefHeight="29.0" prefWidth="184.0" GridPane.columnIndex="1" />
             <ComboBox fx:id="cbColuna" prefHeight="19.0" prefWidth="180.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00428c" height="78.0" layoutX="839.0" layoutY="12.0" stroke="#00428c" strokeType="INSIDE" width="300.0" />
-      <GridPane layoutX="849.0" layoutY="41.0" prefHeight="30.0" prefWidth="281.0">
+      <GridPane layoutX="849.0" layoutY="41.0" prefHeight="30.0" prefWidth="133.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="139.0" minWidth="10.0" prefWidth="139.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="149.0" minWidth="10.0" prefWidth="137.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
-         <children>
-            <Button fx:id="btnExportar" alignment="TOP_LEFT" blendMode="SRC_ATOP" mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-background-color: BCC9D9;" text=" Exportar" textAlignment="RIGHT" textFill="#171010" GridPane.columnIndex="1" GridPane.halignment="CENTER">
-               <font>
-                  <Font size="15.0" />
-               </font>
-               <graphic>
-                  <ImageView fx:id="imgExportar" fitHeight="21.0" fitWidth="21.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Imagens/Exportar.png" />
-                     </image>
-                  </ImageView>
-               </graphic></Button>
-            <Button fx:id="btnImprimir" alignment="TOP_LEFT" blendMode="SRC_ATOP" mnemonicParsing="false" onAction="#onClickImprimir" prefHeight="30.0" prefWidth="120.0" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-background-color: BCC9D9;" text=" Imprimir" textAlignment="CENTER" textFill="#171010" GridPane.halignment="CENTER">
-               <font>
-                  <Font size="15.0" />
-               </font>
-               <graphic>
-                  <ImageView fx:id="imgImprimir" fitHeight="21.0" fitWidth="21.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Imagens/Imprimir.png" />
-                     </image>
-                  </ImageView>
-               </graphic></Button>
-         </children>
       </GridPane>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8da9b1" height="607.0" layoutX="53.0" layoutY="92.0" stroke="#8da9b1" strokeType="INSIDE" width="1252.0" />
       <TableView fx:id="tbviewEstoque" layoutX="72.0" layoutY="127.0" prefHeight="535.0" prefWidth="1214.0" style="-fx-border-width: 0;" tableMenuButtonVisible="true">
@@ -116,10 +90,12 @@
             <TableColumn fx:id="tColumnDescricao" prefWidth="288.0" text="Descrição" />
             <TableColumn fx:id="tColumnMarca" minWidth="0.0" prefWidth="154.0" text="Marca" />
             <TableColumn fx:id="tColumnFornecedor" prefWidth="209.0" text="Fornecedor" />
-            <TableColumn fx:id="tColumnRef" minWidth="0.0" prefWidth="166.0" text="Referência" />
-            <TableColumn fx:id="tColumnQuantidade" prefWidth="79.0" text="Quant." />
-            <TableColumn fx:id="tColumnLocal" minWidth="0.0" prefWidth="48.0" text="Local" />
-            <TableColumn fx:id="tColumnEstado" minWidth="0.0" prefWidth="88.0" text="Estado" />
+            <TableColumn fx:id="tColumnRef" minWidth="0.0" prefWidth="87.0" text="Referência" />
+            <TableColumn fx:id="tColumnQuantidade" prefWidth="46.0" text="Quant." />
+            <TableColumn fx:id="tColumnEstMin" prefWidth="53.0" text="Est. Mín." />
+            <TableColumn fx:id="tColumnEstMax" prefWidth="56.0" text="Est. Máx." />
+            <TableColumn fx:id="tColumnLocal" minWidth="0.0" prefWidth="55.0" text="Local" />
+            <TableColumn fx:id="tColumnEstado" minWidth="0.0" prefWidth="75.0" text="Estado" />
         </columns>
       </TableView>
       <Text fill="#031e46" layoutX="625.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Estoque">
@@ -198,25 +174,14 @@
             <Image url="@../Imagens/Itens.png" />
          </image>
       </ImageView>
-      <Label fx:id="lblUsuarioLogado" layoutX="1165.0" layoutY="9.0" text="Usuário Logado" textFill="#5b5151">
+      <Label fx:id="lblUsuarioLogado" alignment="CENTER" contentDisplay="RIGHT" layoutX="1165.0" layoutY="9.0" prefHeight="27.0" prefWidth="144.0" textAlignment="RIGHT" textFill="#5b5151">
          <font>
-            <Font size="18.0" />
+            <Font size="20.0" />
          </font>
       </Label>
       <ImageView fx:id="imgUsuarioLogado" fitHeight="31.0" fitWidth="30.0" layoutX="1310.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Imagens/Usuario.png" />
-         </image>
-      </ImageView>
-      <Circle fx:id="circleNotificacao" fill="#fffe1f" layoutX="190.0" layoutY="18.0" radius="15.0" stroke="BLACK" strokeType="INSIDE" />
-      <ImageView fx:id="imgNotificacao" fitHeight="20.0" fitWidth="22.0" layoutX="180.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Imagens/Notificacao.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="imgNotificacaoAtiva" fitHeight="20.0" fitWidth="22.0" layoutX="180.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Imagens/NotificacoesAtivas.png" />
          </image>
       </ImageView>
       <ImageView fx:id="imgBuscar" fitHeight="39.0" fitWidth="42.0" layoutX="478.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
@@ -271,6 +236,18 @@
             <ImageView fx:id="imgHistMovimentacao" fitHeight="21.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Imagens/EditarEstoqueItem.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btnImprimir" alignment="TOP_LEFT" blendMode="SRC_ATOP" layoutX="929.0" layoutY="41.0" mnemonicParsing="false" onAction="#onClickImprimir" prefHeight="30.0" prefWidth="120.0" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-background-color: BCC9D9;" text=" Imprimir" textAlignment="CENTER" textFill="#171010">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <graphic>
+            <ImageView fx:id="imgImprimir" fitHeight="21.0" fitWidth="21.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Imagens/Imprimir.png" />
                </image>
             </ImageView>
          </graphic>

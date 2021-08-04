@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class JDBCUtil {
-	private String url = "jdbc:mysql://localhost/projeto_integrador?zeroDateTimeBehavior=convertToNull";
+	private String url = "jdbc:mysql://localhost/projeto_integrador? zeroDateTimeBehavior=convertToNull";
 	private String user = "root";
 	private String password = "root";
 	Connection connection = null;

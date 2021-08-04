@@ -2,6 +2,7 @@ package application;
 
 import ControlesTelas.ControleEstoque;
 import ControlesTelas.ControleLogin;
+import JDBC.Usuario;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,10 +10,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class MainEstoque extends Application {
-	
+	public MainEstoque(Usuario usuario1) {
+		ControleEstoque.setUsuario(usuario1);	
+	}
 	private static Stage stage;
-	
-	
 	@Override
 	public void start(Stage stage) throws Exception {
 		try {

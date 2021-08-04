@@ -60,6 +60,10 @@ public class Item {
 		this.foto_item = foto_item;
 	}
 
+	public Item() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getDescricao_item() {
 		return descricao_item;
 	}

@@ -5,7 +5,7 @@ import java.util.Date;
 
 public interface ItemDAO {
 	
-	public void inserir(Item item);
+	public boolean inserir(Item item);
 	
 	public boolean atualizar(Item item);
 	

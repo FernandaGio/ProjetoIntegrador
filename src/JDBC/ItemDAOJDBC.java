@@ -21,7 +21,7 @@ public class ItemDAOJDBC implements ItemDAO {
 
 	
 	@Override
-	public void inserir(Item item) {
+	public boolean inserir(Item item) {
 		
 		String sql = "insert into item values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 		PreparedStatement preparedStatement;
@@ -43,10 +43,12 @@ public class ItemDAOJDBC implements ItemDAO {
 			preparedStatement.setString(12, item.getFoto_item());
 			
 			preparedStatement.execute();
-			
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return false;
 		}
+		
 		
 	}
 	
@@ -73,8 +75,6 @@ public class ItemDAOJDBC implements ItemDAO {
 			//preparedStatement.setString(9, item.getFoto_item());*/
 			preparedStatement.setString(9, Integer.toString(item.getCodigo_item()));
 			
-			System.out.println(item.getCodigo_item());
-			System.out.println(item.getEstado_item());
 			
 			preparedStatement.execute();
 			preparedStatement.close();
@@ -231,6 +231,14 @@ public class ItemDAOJDBC implements ItemDAO {
 			case "Estado":
 				coluna = "estado_item";
 				break;
+			case "Est. Mínimo":
+				coluna = "estoque_min_item";
+				tipo = true;
+				break;
+			case "Est. Máximo":
+				coluna = "estoque_max_item";
+				tipo = true;
+				break;
 		}
  
 			//executa consultas diferentes de acordo com o tipo da dado pesquisado
@@ -238,8 +246,13 @@ public class ItemDAOJDBC implements ItemDAO {
 				sql = sql + coluna + " = " + buscar + ";";
 				preparedStatement = banco.getConnection().prepareStatement(sql);
 			}else if(!tipo) {
-				sql = sql + coluna + " like '%" + buscar + "%';";
-				preparedStatement = banco.getConnection().prepareStatement(sql);
+				if(coluna == "estado_item") {
+					sql = sql + coluna + " like '" + buscar + "';";
+					preparedStatement = banco.getConnection().prepareStatement(sql);
+				}else{
+					sql = sql + coluna + " like '%" + buscar + "%';";
+					preparedStatement = banco.getConnection().prepareStatement(sql);
+				}
 			}else if(buscar.equalsIgnoreCase("")) {//serve para listar o estoque todo quando o campo buscar estiver vazio
 				listar();
 			}
@@ -287,8 +300,6 @@ public ArrayList<Item> buscarData(String dataIni, String dataFim) {
 				listar();
 			}*/
 		
-			
-	
 			ResultSet resultSet = preparedStatement.executeQuery();
 			
 			while(resultSet.next()) {
