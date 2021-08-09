@@ -1,8 +1,17 @@
 package ControlesTelas;
 
+import java.awt.Component;
+import java.awt.Desktop;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -12,14 +21,31 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import javax.swing.JFileChooser;
+import javax.swing.JTable;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableCellRenderer;
+
+import org.apache.poi.hssf.model.Sheet;
+import org.apache.poi.hssf.model.Workbook;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+
 import JDBC.Item;
 import JDBC.ItemDAO;
 import JDBC.ItemDAOJDBC;
 import JDBC.JDBCUtil;
+import JDBC.Usuario;
+import JDBC.UsuarioDAO;
+import JDBC.UsuarioDAOJDBC;
 import Relatorios.RelatorioEstoque;
 import application.MainAlterarItem;
 import application.MainCadastroUser;
 import application.MainEstoque;
+import application.MainHistoricoMovimentacao;
 import application.MainInformacoesItem;
 import application.MainMovimentacaoItem;
 import application.MainVisualizarFoto;
@@ -117,6 +143,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 		    @FXML
 		    private TableColumn<Item, String> tColumnFornecedor;
+		    
+		    @FXML
+		    private TableColumn<Item, Integer> tColumnEstMin;
+
+		    @FXML
+		    private TableColumn<Item, Integer> tColumnEstMax;
 
 		    @FXML
 		    private Label lblDataFInal;
@@ -174,18 +206,58 @@ import javafx.scene.control.cell.PropertyValueFactory;
 		    @FXML
 		    private ImageView imgHistMovimentacao;
 		    
+		    private static Usuario usuario;
+		    
+		    
+		    public static Usuario getusuario() {
+		    	return usuario;
+				
+			}
+		    
+		    public static void setUsuario(Usuario usuario1) {
+		    	ControleEstoque.usuario = usuario1;
+			}
+		    
 		    private final JDBCUtil database = new JDBCUtil();
 		    private final Connection connection = database.getConnection();
 		    private final ItemDAO itemdao = new ItemDAOJDBC();
 		    @FXML
 		    void onClickHistMovimentacao(ActionEvent event) {
+		    	/*URL url1 = getClass().getResource("/Relatorios/RelatorioHistoricoMovimentacao.jasper");
+		    	JasperReport jasperReport = (JasperReport) JRLoader.loadObject(url1);
+		    	Map logo = new HashMap();
+				logo.put("K3_logo", "C:/Users/Usuario/eclipse-workspace/ProjetoIntegrador/src/Imagens/K3_logo.png");
 		    	
+		    	JasperPrint jasperPrint = null;
+				try {
+					jasperPrint = JasperFillManager.fillReport(jasperReport, logo, connection);
+				} catch (JRException e) {
+					e.printStackTrace();
+				}
+		    	
+		    	JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);
+		    	jasperViewer.setVisible(true);
+		    	jasperViewer.toFront();*/
+		    	
+		    	Item itemSelecionado = tbviewEstoque.getSelectionModel().getSelectedItem();
+		    	if(itemSelecionado!= null) {
+		    		MainHistoricoMovimentacao m= new MainHistoricoMovimentacao(itemSelecionado);
+					try {
+						m.start(new Stage());
+					}catch (Exception e1) {
+						e1.printStackTrace();
+					}
+		    	}else {
+		    		Alert alert = new Alert(AlertType.WARNING);
+					alert.setHeaderText("Selecione um item.");
+					alert.show();
+		    	}
+		    	  	  	
 		    }
 		    
 		    @FXML
 		    public void onClickImprimir(ActionEvent arg0) throws JRException{
 		    	URL url = getClass().getResource("/Relatorios/RelatorioEstoque.jasper");
-		    	System.out.println(url);
 		    	JasperReport jasperReport = (JasperReport) JRLoader.loadObject(url);
 		    	Map logo = new HashMap();
 				logo.put("K3_logo", "C:/Users/Usuario/eclipse-workspace/ProjetoIntegrador/src/Imagens/K3_logo.png");
@@ -207,7 +279,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 		    void onClickEditarEstoque(ActionEvent event) {
 		    	Item itemSelecionado = tbviewEstoque.getSelectionModel().getSelectedItem();
 		    	if(itemSelecionado!= null) {
-		    		MainMovimentacaoItem m= new MainMovimentacaoItem(itemSelecionado);
+		    		MainMovimentacaoItem m= new MainMovimentacaoItem(itemSelecionado, usuario);
 					try {
 						m.start(new Stage());
 					}catch (Exception e1) {
@@ -289,39 +361,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 				imgBuscarData.setOnMouseClicked(MouseEvent ->{
 		    		botaoBuscarData();
 		    	});
+				 
+				lblUsuarioLogado.setText(usuario.getNome());
 				
-				//duplo clique em TableView
-				/*tbviewEstoque.setOnMouseClicked((MouseEvent e)->{
-					if (e.getButton().equals(MouseButton.PRIMARY) && e.getClickCount() == 2){
-					Item itemSelecionado = tbviewEstoque.getSelectionModel().getSelectedItem();
-					caminhoFoto = itemSelecionado.getFoto_item();
-					String foto_item = caminhoFoto;
-					System.out.println(caminhoFoto);
-			    	if(itemSelecionado!= null) {
-			    		MainVisualizarFoto m= new MainVisualizarFoto(foto_item);
-						try {
-							m.start(new Stage());
-						}catch (Exception e1) {
-							e1.printStackTrace();
-						}
-			    	}else {
-			    		Alert alert = new Alert(AlertType.WARNING);
-						alert.setHeaderText("Selecione um item");
-						alert.show();
-			    	}
-			    }
-					
-					/*	caminhoFoto = ControleAlterarItem.getItem2().getFoto_item();
-						String foto_item = caminhoFoto;
-						Item item = new Item(foto_item);
-						MainVisualizarFoto m= new MainVisualizarFoto(foto_item);
-						try {
-							m.start(new Stage());
-						} catch (Exception e1) {
-							e1.printStackTrace();
-						}
-					}
-				});*/
 				
 				btnAtualizaEstoque.setOnMouseClicked((MouseEvent e)->{
 					tbviewEstoque.setItems(listar());
@@ -336,8 +378,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 				//Date dataIni = (Date) Date.from(dataInicial.atStartOfDay(ZoneId.systemDefault()).toInstant());
 				ItemDAOJDBC itemdao = new ItemDAOJDBC(); 
 				ArrayList<Item> itens = itemdao.buscarData("" + dataInicial, "" + dataFinal);
-				//System.out.println(dataIni);
-				//System.out.println(dataFim);
 				for(Item i: itens)
 					listar(itens);			
 			}
@@ -372,6 +412,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 				tColumnRef.setCellValueFactory(new PropertyValueFactory("referencia_marca_item"));
 				tColumnFornecedor.setCellValueFactory(new PropertyValueFactory("fornecedor_item"));
 				tColumnQuantidade.setCellValueFactory(new PropertyValueFactory("quant_atual_item"));
+				tColumnEstMin.setCellValueFactory(new PropertyValueFactory("estoque_min_item"));
+				tColumnEstMax.setCellValueFactory(new PropertyValueFactory("estoque_max_item"));
 				tColumnLocal.setCellValueFactory(new PropertyValueFactory("local_item"));
 				tColumnEstado.setCellValueFactory(new PropertyValueFactory("estado_item"));
 				tbviewEstoque.setItems(listar());
@@ -396,6 +438,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 				Colunas coluna6 = new Colunas(6, "Quantidade");
 				Colunas coluna7 = new Colunas(7, "Local");
 				Colunas coluna8 = new Colunas(8, "Fornecedor");
+				Colunas coluna9 = new Colunas(9, "Est. Mínimo");
+				Colunas coluna10 = new Colunas(10, "Est. Máximo");
 				
 				colunas.add(coluna1);
 				colunas.add(coluna2);
@@ -405,19 +449,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 				colunas.add(coluna6);
 				colunas.add(coluna7);
 				colunas.add(coluna8);
+				colunas.add(coluna9);
+				colunas.add(coluna10);
 				
 				coluna = FXCollections.observableArrayList(colunas);
 				cbColuna.setItems(coluna);
 				
 			}
-			//teste de pesquisa
-			/*private ObservableList<Item> buscarData(){
-				ObservableList<Item> itemPesquisado = FXCollections.observableArrayList();
-				for(int x = 0; x< Itens.size(); x++){
-					if(Itens.get(x).getDescricao_item().contains(txtBuscar.getText())||Itens.get(x).getEstado_item().contains(txtBuscar.getText())||Itens.get(x).getMarca_item().contains(txtBuscar.getText())||Itens.get(x).getLocal_item().contains(txtBuscar.getText())){
-						itemPesquisado.add(Itens.get(x));
-					}
-				}
-			return itemPesquisado;
-		}*/
- }
+	}
+			

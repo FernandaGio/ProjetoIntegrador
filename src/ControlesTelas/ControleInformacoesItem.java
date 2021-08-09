@@ -139,9 +139,10 @@ public class ControleInformacoesItem implements Initializable{
 	    	String descricao_item = txtDescricao.getText(), marca_item = txtMarca.getText(),fornecedor_item = txtFornecedor.getText();
 	    	String local_item = txtLocal.getText(), referencia_marca_item = txtReferencia.getText(), estado_item = estadoItem.getText(); 
 	    	int estoque_min_item = Integer.parseInt(txtEstMin.getText()), estoque_max_item = Integer.parseInt(txtEstMax.getText());
+	    	int quant_atual_item = Integer.parseInt(txtQuantAtual.getText());
 	    	LocalDate data = dpDataEntrada.getValue();
 	    	
-	    	Item item = new Item(descricao_item, fornecedor_item, marca_item, estoque_max_item, local_item, estoque_min_item, estoque_max_item, referencia_marca_item, asDate(data), estado_item, caminhoFoto);
+	    	Item item = new Item(descricao_item, fornecedor_item, marca_item, quant_atual_item, local_item, estoque_min_item, estoque_max_item, referencia_marca_item, asDate(data), estado_item, caminhoFoto);
 	    	ItemDAO itemdao = new ItemDAOJDBC();
 	    	if(itemdao.inserir(item)) {
 	    		Alert alert = new Alert(AlertType.CONFIRMATION);
